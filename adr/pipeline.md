@@ -17,6 +17,8 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - homr 0.7.0: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
 - Rejected: Audiveris 5.11, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, last release outside the window. Rejected: PDFtoMusic Pro, paid and unneeded.
 
+- pytest, ruff, mypy: tests, lint, types in `muse`. Maintenance: active.
+
 ## Mechanism
 - MuseScore import keeps jump words and signs as staff text, so the port rewrites them into jump elements and hidden markers in the saved score.
 - A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
