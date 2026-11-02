@@ -4,7 +4,19 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 
 | Stage | Pick | State | Disproved by |
 |---|---|---|---|
-| Read notes | Direct reader of PDF symbols, cross-checked by homr | provisional | a bar disagreeing with the source when read by eye |
-| Read chords and text | Direct PDF text extraction | provisional | a chord or cue missing from the output |
-| Transpose | MuseScore `--transpose` | provisional | a wrong chord extension on a real sheet |
-| Export | MuseScore `mscore` batch job | provisional | a missing or altered element in the export |
+| Read notes | Direct reader of PDF symbols, 1 decoder per encoding | locked | a bar disagreeing with the source when read by eye |
+| Cross-check | homr 0.7 on every source page | locked | a real disagreement left unresolved |
+| Read chords and text | Direct PDF text extraction | locked | a chord or cue missing from the output |
+| Write | MusicXML with explicit system breaks | locked | a wrong import in MuseScore |
+| Transpose | MuseScore `--transpose` | locked | a verifier mismatch on notes, chords or key |
+| Export | MuseScore `mscore` with a fixed style file | locked | a header, footer or banned text in the PDF |
+
+## Dependencies
+- PyMuPDF: reads glyph positions and vector paths. Rejected: poppler text output, which has no path data. Maintenance: 2.0, inside the window.
+- MuseScore 4.7.6: import, transposition, export. Maintenance: current release line.
+- homr 0.7.0: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
+- Rejected: Audiveris 5.11, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, last release outside the window. Rejected: PDFtoMusic Pro, paid and unneeded.
+
+## Mechanism
+- MuseScore import keeps jump words and signs as staff text, so the port rewrites them into jump elements and hidden markers in the saved score.
+- A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
