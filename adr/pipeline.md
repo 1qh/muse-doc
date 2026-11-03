@@ -23,6 +23,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Rejected: Audiveris 5.11, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, last release outside the window. Rejected: PDFtoMusic Pro, paid and unneeded.
 
 - MuseScore 3.6.2: the `-ms3` file only. Exception to latest-only and the 6-month window, because the file exists to serve version 3; trigger to revisit: nobody needs version 3. Runs under Rosetta on Apple silicon.
+- MuseScore 3.6.2: builds the legacy `-ms3` score. Exception to the active-maintenance window: its age is the purpose, and the last release of the line stays frozen until nobody needs the format. Trigger to revisit: the format stops being requested. Maintenance: none upstream; last release.
 - pytest, ruff, mypy: tests, lint, types in `muse`. Maintenance: active.
 
 ## Mechanism
