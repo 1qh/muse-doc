@@ -24,31 +24,6 @@ Owns what a final sheet carries.
 
 - Put readability ahead of tightness: readable notation size, clear gaps between lines, small margins, lines spread evenly across pages, no ink at the page edge. Why: the sheet is read while performing.
 
-## Chord timing
-- Put a lone chord in a bar without notes on beat 1. Why: a chord in a silent bar plays with the bar's start.
-- Space several chords in a bar without notes evenly over the bar by their order. Why: a printed position in an empty bar is not a timing.
-- Align a chord in a bar with notes to the note it is printed over. Why: the chord sounds with that note.
-
-## Signs
-- Write segno and coda as MuseScore's built-in markers, `<sym>segno</sym>` and `<sym>coda</sym>`, enlarged by their size property. Why: MuseScore recognises only that form as a sign.
-
-## Song folder
-- Publish each song as a folder `<name>/` holding `<name>-<original>.mscz`, `<name>-<original>-ms3.mscz`, `<name>-<original>.pdf`, `<name>-<tone>.pdf` and `<name>-<tone>-piano.pdf`. Why: 1 place per song, in the tone it was written and the tone it is played.
-- Keep MuseScore files in the original tone only. Why: the tone PDFs are for reading and the scores for editing.
-- Skip `<name>-<tone>.pdf` when the original is already the tone. Why: it would be the same file twice.
-- Hold the same rules on the original-tone PDF as on the tone PDF, measured with its own chord names. Why: chord names change width with the key.
-- Build the latest score with the newest MuseScore installed and rebuild on request after an upgrade. Why: newer versions open older files, and a new version can change layout.
-- Withhold an `-ms3` score whose notes, chords, chord beats or jumps differ from the latest score, and report it. Why: a wrong file is worse than a missing one.
-
-## Piano PDF
-- Print 1 staff per line, always. Why: a pianist voices chords freely.
-- Print notes only in the intro, interludes and outro, and empty bars with chords and hidden rests everywhere else. Why: other instruments' notes are not the pianist's to read.
-- Find unlabelled parts from the song's shape: bars before the first verse are the intro, instrumental bars between sung sections are interludes, bars after the last sung section are the outro. Why: most sheets label only some parts.
-- Keep the staff cued as piano or keys in a 2-staff kept bar, otherwise the top melody, and list each choice in the private folder. Why: that is the line played.
-- Keep every cue, section mark, jump, tempo and stop mark. Why: the pianist reads the whole band picture.
-- Shorten hint lyrics to the first words. Why: they locate the singer and cost height.
-- Fit 1 page, using 2 only when chords would fall below a readable size. Why: no page turn.
-
 ## NEVER
 - Never print a composer or performer credit, copyright line, contact, watermark, header, footer or page number. Cost: the sheet stops being music only.
 
