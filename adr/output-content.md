@@ -6,9 +6,10 @@ Owns what a final sheet carries.
 - Keep notes, chords, tempo, section marks, repeats, band cues and hint lyrics. Why: the sheet is for performing.
 - Print the song title small, once, at the top right of every page. Why: a printed sheet is found in a stack by its corner.
 - Set all text in SF Pro Display, installed from Apple on every machine that edits a score. Why: it carries every Vietnamese letter in all 4 styles.
-- Make chords the biggest text with at least 1 chord font size of clear space between 2 chords, adding lines and pages as needed. Why: chord readability outranks length.
+- Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords, giving bars with more chords more width. Why: chords are what gets read first.
+- Keep every song to 2 pages at most. Why: more pages mean page turns while performing.
 - Lay out lines for reading, independent of the source: start each line at 8 bars and halve only a line whose chords or notes do not fit, avoiding a stranded single bar, then a break on a tied note. Why: short bars stay compact and wide bars get room.
-- Scale each song to the largest notation that fits its pages, with lines spread evenly. Why: bigger reads better and blank space serves nothing.
+- Scale each song to the largest notation that fits 2 pages, with lines spread evenly. Why: bigger reads better and blank space serves nothing.
 
 - Correct a mistake in a source sheet wherever evidence inside the song settles the right notation: a repeated section, the harmony, the bar length, the sibling verse. Why: the output must be musically correct, not a copy of an error.
 - List every correction per song with bar, source reading, corrected reading and evidence. Why: each correction stays checkable against the source.
