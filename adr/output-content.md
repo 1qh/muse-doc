@@ -10,7 +10,7 @@ Owns what a final sheet carries.
 - List every correction per song with bar, source reading, corrected reading and evidence. Why: each correction stays checkable against the source.
 - Flag a suspected mistake in that list, unchanged, when the song holds no evidence that settles it. Why: a guess presented as a correction is a new error.
 
-- Put readability ahead of tightness: readable notation size, clear gaps between lines, small margins, no forced page break, no ink at the page edge. Why: the sheet is read while performing.
+- Put readability ahead of tightness: readable notation size, clear gaps between lines, small margins, lines spread evenly across pages, no ink at the page edge. Why: the sheet is read while performing.
 
 ## NEVER
 - Never print a title, composer or performer credit, copyright line, contact, watermark, header, footer or page number. Cost: the sheet stops being music only.
