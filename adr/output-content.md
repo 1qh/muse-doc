@@ -7,8 +7,10 @@ Owns what a final sheet carries.
 - Print the song title small, once, at the top right of every page. Why: a printed sheet is found in a stack by its corner.
 - Set all text in SF Pro Display, installed from Apple on every machine that edits a score. Why: it carries every Vietnamese letter in all 4 styles.
 - Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords, giving bars with more chords more width. Why: chords are what gets read first.
+- Place each chord on its true beat: a lone chord in a bar without notes on beat 1, several chords in a bar without notes on real beats by their order, and a chord in a bar with notes on the note the source aligns it to. Why: a chord that looks right and plays late sounds wrong.
+- Write segno and coda as the score application's own built-in signs, enlarged through its own size setting. Why: a raw character behaves as plain text.
 - Print segno and coda signs at least 1.6 times the chord size, and the jump words To Coda and D.S. al Coda in bold below the chord size. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
-- Keep every song to 2 pages at most. Why: more pages mean page turns while performing.
+- Keep the original-tone and favourite-tone PDFs to 2 pages at most. Why: more pages mean page turns while performing.
 - Lay out lines for reading, independent of the source: start each line at 8 bars and halve only a line whose chords or notes do not fit, avoiding a stranded single bar, then a break on a tied note. Why: short bars stay compact and wide bars get room.
 - Scale each song to the largest notation that fits 2 pages with at most 15% of lines holding 2 bars or fewer, with lines spread evenly. Why: bigger reads better and blank space serves nothing.
 
@@ -20,3 +22,12 @@ Owns what a final sheet carries.
 
 ## NEVER
 - Never print a composer or performer credit, copyright line, contact, watermark, header, footer or page number. Cost: the sheet stops being music only.
+
+## Piano PDF
+- Print 1 staff per line, in the favourite tone. Why: a pianist voices from chords.
+- Keep notes only in the intro, interlude and outro; every other bar is empty with chords above and its rest hidden. Why: other instruments' notes are not the pianist's concern.
+- Treat bars before the first verse or section mark as the intro, a labelled interlude or an instrumental stretch without lyric labels as an interlude, and bars after the last chorus section as the outro; list each inferred boundary per song. Why: many sheets do not label these parts.
+- In a kept part with 2 staves, keep the staff cued Piano or Key, otherwise the top staff; list each choice per song. Why: the staff the pianist plays can sit on either line.
+- Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
+- Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words. Why: these are the map of the song and hint lines cost height.
+- Fit 1 page, going to 2 only when chords would otherwise fall below a readable size. Why: 1 page needs no page turn.
