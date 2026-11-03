@@ -9,7 +9,7 @@ Owns what a final sheet carries.
 - Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords, giving bars with more chords more width. Why: chords are what gets read first.
 - Keep every song to 2 pages at most. Why: more pages mean page turns while performing.
 - Lay out lines for reading, independent of the source: start each line at 8 bars and halve only a line whose chords or notes do not fit, avoiding a stranded single bar, then a break on a tied note. Why: short bars stay compact and wide bars get room.
-- Scale each song to the largest notation that fits 2 pages, with lines spread evenly. Why: bigger reads better and blank space serves nothing.
+- Scale each song to the largest notation that fits 2 pages with at most 15% of lines holding 2 bars or fewer, with lines spread evenly. Why: bigger reads better and blank space serves nothing.
 
 - Correct a mistake in a source sheet wherever evidence inside the song settles the right notation: a repeated section, the harmony, the bar length, the sibling verse. Why: the output must be musically correct, not a copy of an error.
 - List every correction per song with bar, source reading, corrected reading and evidence. Why: each correction stays checkable against the source.
