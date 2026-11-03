@@ -3,6 +3,8 @@
 Owns which repo holds what.
 
 ## MUST
+- Keep only PDF and MuseScore files in `muse-sheets`, its history included. Why: the repo is the deliverable and nothing else.
+- Keep correction lists, verdicts, pins and banned names in the untracked private folder of the workspace parent. Why: they quote sheet content and name people, and the other repos are public.
 - Keep code in `muse`, docs in `muse-doc`, experiments in `muse-spike`, outputs in `muse-sheets`. Why: 1 home per kind.
 - Keep source PDFs in the workspace parent, outside every repo. Why: the sheets are borrowed and not ours to publish.
 
