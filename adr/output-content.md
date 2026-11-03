@@ -33,6 +33,8 @@ Owns what a final sheet carries.
 - Treat bars before the first verse or section mark as the intro, a labelled interlude or an instrumental stretch without lyric labels as an interlude, and bars after the last chorus section as the outro; list each inferred boundary per song. Why: many sheets do not label these parts.
 - Treat a coda without a lyric label as sung until the unbroken run of note bars that ends the song, which is the outro; treat a shorter coda stretch before a lyric label, and any lone kept bar inside the song, as sung. Why: isolated hits belong to the band, while the closing run is the pianist's.
 - Treat an ending lyric that repeats an earlier section as sung for that section's length. Why: the singer still carries those bars.
+- Treat a stretch after a repeat's end, cued for piano with no lyric label, as an interlude. Why: a piano-only passage there is the pianist's.
+- In a kept bar whose chosen staff has no notes, take the notes of the other staff. Why: an instrumental passage can move between staves.
 - In a kept part with 2 staves, keep the staff cued Piano or Key, otherwise the top staff; list each choice per song. Why: the staff the pianist plays can sit on either line.
 - Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
 - Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words. Why: these are the map of the song and hint lines cost height.
