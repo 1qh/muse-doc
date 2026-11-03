@@ -9,7 +9,7 @@ Owns what a final sheet carries.
 - Set all text in SF Pro Display, installed from Apple on every machine that edits a score. Why: it carries every Vietnamese letter in all 4 styles.
 - Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords, giving bars with more chords more width. Why: chords are what gets read first.
 #### Chords and signs
-- Place each chord on its true beat: a lone chord in a bar without notes on beat 1, several chords in a bar without notes on real beats by their order, and a chord in a bar with notes on the note the source aligns it to. Why: a chord that looks right and plays late sounds wrong.
+- Place each chord on its true beat: a lone chord in a bar without notes on beat 1, several chords in a bar without notes on real beats by their order, a lone chord in a bar with notes on beat 1 unless the source prints it exactly over a note in the 2nd half, and several chords in a bar with notes on the notes the source aligns them to. Why: a chord that looks right and plays late sounds wrong.
 - Write segno and coda as the score application's own built-in signs, enlarged through its own size setting. Why: a raw character behaves as plain text.
 - Print segno and coda signs at least 1.6 times the chord size, and the jump words To Coda and D.S. al Coda in bold below the chord size. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
 #### Layout
