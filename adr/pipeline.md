@@ -22,3 +22,12 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 ## Mechanism
 - MuseScore import keeps jump words and signs as staff text, so the port rewrites them into jump elements and hidden markers in the saved score.
 - A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
+
+## Refusals
+- Refuse an unknown music encoding by naming its fonts. Why: a wrong decoder reads confident garbage.
+- Refuse an undecoded music symbol. Why: skipping it silently loses music.
+- Refuse a missing SF Pro Display. Why: MuseScore otherwise falls back to another font without saying so.
+
+## Gate
+- Pass `muse.gate` before publishing: bars, pitches, chords, keys, navigation, inverse transposition, removed text, fonts, chord gap, margins, title, page cap, A4, ink edges, ties over line ends and a homr cross-check. Why: every rule lives in 1 command that states all failures at once.
+- Report a tie over a line end only where its tied run is too long for 1 line. Why: there the break is forced.

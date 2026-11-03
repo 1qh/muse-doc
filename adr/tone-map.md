@@ -1,14 +1,8 @@
 # Tone map
 
-Owns the target key per song. Rule: move each song to whichever of G/Em or C/Am is nearest by semitones.
+Owns how a song's target key is chosen. The key comes from the file name's suffix and must match the printed key signature.
 
-| Song | Source | Target | Semitones |
-|---|---|---|---|
-| Song A | Cm | Am | -3 |
-| Song B | Em | Em | 0 |
-| Song C | Dm | Em | +2 |
-| Song D | Am | Am | 0 |
-| Song E | Dm | Em | +2 |
-| Song F | Fm | Em | -1 |
-| Song G | Em | Em | 0 |
-| Song H | Dm | Em | +2 |
+- Move a minor song to whichever of Em or Am is nearest by semitones. Why: these are the keys played.
+- Move a major song to whichever of G or C is nearest by semitones. Why: same keys, major side.
+- Refuse a source whose name and printed key disagree. Why: a wrong key transposes the whole song wrongly.
+- Keep each song's confirmed result in the private sheets repo. Why: song lists stay out of public repos.
