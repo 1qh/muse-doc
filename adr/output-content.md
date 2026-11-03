@@ -10,5 +10,7 @@ Owns what a final sheet carries.
 - List every correction per song with bar, source reading, corrected reading and evidence. Why: each correction stays checkable against the source.
 - Flag a suspected mistake in that list, unchanged, when the song holds no evidence that settles it. Why: a guess presented as a correction is a new error.
 
+- Keep margins and system spacing tight and let pages fill, with no forced page break and no ink reaching the page edge. Why: the sheet is read at a glance, and fewer pages mean fewer page turns.
+
 ## NEVER
 - Never print a title, composer or performer credit, copyright line, contact, watermark, header, footer or page number. Cost: the sheet stops being music only.
