@@ -26,9 +26,9 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - pytest, ruff, mypy: tests, lint, types in `muse`. Maintenance: active.
 
 ## Mechanism
-- MuseScore 4 import keeps jump words and signs as staff text, so the port rewrites them into jump elements and markers carrying `<sym>`, `markerType`, `markerCenterOnSymbol` and `musicSymbolSize`. A marker without a type prints as an end-of-bar marker.
+- MuseScore 4 import keeps jump words and signs as staff text, so the port rewrites them into jump elements and markers carrying `<sym>`, `markerType`, `markerCenterOnSymbol` and `musicSymbolSize`. An untyped marker prints at the end of its bar.
 - MuseScore 3 import writes the signs and jumps itself, so the port only sizes them.
-- MuseScore 3 names 2 text styles differently from version 4, so the legacy style adds `staffFontFace` and `systemFontFace`.
+- The MuseScore 3 style adds `staffFontFace` and `systemFontFace`, MuseScore 3's own names for 2 text styles.
 - A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
 
 ## Refusals
