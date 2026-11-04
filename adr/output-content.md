@@ -10,6 +10,7 @@ Owns what a final sheet carries.
 - Set all text in SF Pro Display, installed from Apple on every machine that edits a score. Why: it carries every Vietnamese letter in all 4 styles.
 - Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords, giving bars with more chords more width. Why: chords are what gets read first.
 #### Chords and signs
+- In a MuseScore 3 file, accept the fixed hold that program keeps after a mid-line barline, up to 5.6 points, and seat the rest at the barline. Why: its layout holds that chord there whatever the offset, and freeing it from automatic placement runs it into lyrics and voltas.
 - Place each chord on its true beat: a lone chord in a bar without notes on beat 1, several chords in a bar without notes on real beats by their order, a lone chord in a bar with notes on beat 1 unless the source prints it exactly over a note in the 2nd half, and several chords in a bar with notes on the notes the source aligns them to. Why: a chord that looks right and plays late sounds wrong.
 - Print every beat-1 chord with its left edge exactly at the barline, no gap, with or without notes, and right after the clef and key on a line start; left-align a mid-bar chord to its beat. Why: the same position everywhere reads at a glance, and centred chords shift with their width.
 - Seat chords close above the staff, about 1 staff space, on a shared baseline per line that clears the highest note. Why: a chord reads as belonging to the bar it sits on.
