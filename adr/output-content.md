@@ -13,6 +13,7 @@ Owns what a final sheet carries.
 - Write segno and coda as the score application's own built-in signs, enlarged through its own size setting. Why: a raw character behaves as plain text.
 - Print segno and coda signs at least 1.6 times the chord size, and the jump words To Coda and D.S. al Coda in bold below the chord size. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
 #### Layout
+- Print no empty staff on a line that shares it with another staff, in any file, including MuseScore 3's first line; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
 - Keep the original-tone and favourite-tone PDFs to 2 pages at most. Why: more pages mean page turns while performing.
 - Lay out lines for reading, independent of the source: start each line at 8 bars and halve only a line whose chords or notes do not fit, avoiding a stranded single bar, then a break on a tied note. Why: short bars stay compact and wide bars get room.
 - Scale each song to the largest notation that fits 2 pages with at most 15% of lines holding 2 bars or fewer, with lines spread evenly. Why: bigger reads better and blank space serves nothing.
