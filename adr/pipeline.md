@@ -16,6 +16,12 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Hold notes, chords, chord beats and jumps identical to the latest file through the gate; layout may differ. Why: version 3 lays music out differently.
 - Withhold a file that cannot match, and report the song and reason. Why: a wrong file is worse than a missing one at a rehearsal.
 
+## Build cost
+- Key every song's build and gate result on a digest of its source, the code and the style, and skip what is unchanged. Why: adding 1 song or fixing 1 sheet type must not rebuild the rest.
+- Save each sheet's chosen size, line gap, chord width and line breaks, and start from them on a rebuild, re-proving them in 1 pass. Why: searching again repeats work already decided.
+- Reuse 1 MuseScore process per batch wherever its job mode allows. Why: each launch costs seconds, and the search makes many.
+- Size worker count to the free cores, and report build time per song. Why: oversubscribing the machine makes every process slower.
+
 ## Dependencies
 - PyMuPDF: reads glyph positions and vector paths. Rejected: poppler text output, which has no path data. Maintenance: 2.0, inside the window.
 - MuseScore 4.7.6: import, transposition, export. Maintenance: current release line.
