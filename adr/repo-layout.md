@@ -11,7 +11,7 @@ Owns which repo holds what.
 - Keep code in `muse`, docs in `muse-doc`, experiments in `muse-spike`, outputs in `muse-sheets`. Why: 1 home per kind.
 - Keep source PDFs in the workspace parent, outside every repo. Why: the sheets are borrowed and not ours to publish.
 
-- Publish only through `muse.publish`, which refuses a non-private repo or a failed gate, then purges replaced binaries from `muse-sheets` history with BFG and force-pushes, comparing the HEAD tree id before and after. Why: re-exported PDFs and scores otherwise accumulate on the remote.
+- Publish only through `muse.publish`, per song: a song passing its gate publishes, a failing song keeps its last good published folder and is listed with the reason, and only a repo-wide problem such as a non-private repo or a stray file refuses the run. Why: 1 failing song must not hold back the rest. It then purges replaced binaries from `muse-sheets` history with BFG and force-pushes, comparing the HEAD tree id before and after. Why: re-exported PDFs and scores otherwise accumulate on the remote.
 
 - Keep song titles and reading pins in the private `muse-spike`, never in a public repo. Why: the public repos carry no sheet content.
 
