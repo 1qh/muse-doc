@@ -38,6 +38,7 @@ Owns what a final sheet carries.
 - Treat a stretch after a repeat's end, cued for piano with no lyric label, as an interlude. Why: a piano-only passage there is the pianist's.
 - In a kept bar whose chosen staff has no notes, take the notes of the other staff. Why: an instrumental passage can move between staves.
 - In a kept part with 2 staves, keep the staff cued Piano or Key, otherwise the top staff; list each choice per song. Why: the staff the pianist plays can sit on either line.
+- Start each piano line at up to 16 bars and split only a line whose chords or notes do not fit, merging neighbours whenever they fit. Why: empty bars need only chord room, and a pianist wants the song compact.
 - Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
 - Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words, per label where 1 text stacks several, and keep a bold cue sharing that text whole. Why: these are the map of the song and hint lines cost height.
 - Fit 1 page, going to 2 only when chords would otherwise fall below a readable size. Why: 1 page needs no page turn.
