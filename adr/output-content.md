@@ -4,7 +4,8 @@ Owns what a final sheet carries.
 
 ## MUST
 #### What prints
-- Keep notes, chords, tempo, section marks, repeats, band cues and hint lyrics. Why: the sheet is for performing.
+- Keep notes, chords, tempo, section marks, repeats, band cues and hint lyrics, and drop a source text that is only punctuation. Why: the sheet is for performing, and a lone dot is print dust.
+- Refuse a size where a segno or coda prints on the baseline of the chord beside it and touches it. Why: the sign and the chord root read as 1 smudge.
 - Print the song title small, once, at the top right of every page. Why: a printed sheet is found in a stack by its corner.
 - Set all text in SF Pro Display, installed from Apple on every machine that edits a score. Why: it carries every Vietnamese letter in all 4 styles.
 - Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords, giving bars with more chords more width. Why: chords are what gets read first.
@@ -38,5 +39,5 @@ Owns what a final sheet carries.
 - In a kept bar whose chosen staff has no notes, take the notes of the other staff. Why: an instrumental passage can move between staves.
 - In a kept part with 2 staves, keep the staff cued Piano or Key, otherwise the top staff; list each choice per song. Why: the staff the pianist plays can sit on either line.
 - Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
-- Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words. Why: these are the map of the song and hint lines cost height.
+- Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words, per label where 1 text stacks several, and keep a bold cue sharing that text whole. Why: these are the map of the song and hint lines cost height.
 - Fit 1 page, going to 2 only when chords would otherwise fall below a readable size. Why: 1 page needs no page turn.
