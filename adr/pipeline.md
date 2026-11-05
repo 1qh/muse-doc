@@ -12,7 +12,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 | Export | MuseScore `mscore` with a fixed style file | locked | a header, footer or banned text in the PDF |
 
 ## Source encodings
-- Decode MuseScore-exported lead sheets through a Leland decoder, one more entry in the 1-per-encoding table. Why: the music glyphs are standard SMuFL characters.
+- Decode MuseScore-exported lead sheets through a Leland decoder reading vector glyphs, stems and beams, one more entry in the 1-per-encoding table, with no new dependency. Why: the music glyphs are standard SMuFL characters, and a page image adds only error.
 - Keep a mid-song key change in the score and move it by the song's own interval. Why: the change belongs to the song.
 
 ## Orchestral score
@@ -37,9 +37,9 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Fail fast in order of cost: preflight every song in seconds (decode, key, piano parts, tests, lint), then 1 layout per sheet through the final-PDF checks, then the search, then the gate as confirmation. Why: a defect visible in seconds must not wait hours.
 - Stop a song at its first refusal and let other songs continue; refuse a chain whose tests or controls fail before any build. Why: 1 song must not block the rest, and a failed check must never run on.
 - Size worker count to the free cores, and report build time per song. Why: oversubscribing the machine makes every process slower.
+- Queue songs singly so a free worker takes the next song, publish 1 song at a time under a lock, and run planted-bug controls in parallel. Why: a fixed batch waits on its slowest song, and publishing rewrites shared history.
 
 ## MuseScore Studio exports
-- Decode a Leland export from its vector glyphs, stems and beams, with no new dependency. Why: the PDF holds the exact notation, so a page image adds only error.
 - Read a staff as a second staff WHEN its bar lines fall where the staff above has them. Why: some lines print an extra part and others do not.
 - Read a mid-song key or time change from signs beside no note. Why: these songs change key late.
 - Read 2 segno signs as target then jump, and 2 coda signs as jump then target. Why: these sheets print bare signs without words.
