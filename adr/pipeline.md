@@ -52,6 +52,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Key a build on the song file, the layout rules and the style, never on decoder or check code. Why: a change that cannot alter a sheet must not rebuild it.
 - Carry a saved layout across a code change by re-proving it in 1 pass, and search only when that proof fails. Why: a finished search stays paid for.
 - Fail a re-proof when the saved lines break a line rule. Why: lines saved under older rules otherwise waste a build and fall at the gate.
+- Start a search at the sheet's saved size and look near it, with a cap counted per search step rather than reached silently. Why: a cap reached mid-search reads as nothing fitting and drops the sheet to the smallest size.
 - Climb to larger sizes when the smallest fail, before refusing a sheet. Why: text keeps its size, so the smallest notation can collide where a larger one fits.
 - Render a search's candidate sizes through 1 MuseScore job, each score carrying its own style. Why: startup is about 3.3 of each launch's 3.4 seconds.
 
