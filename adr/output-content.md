@@ -8,7 +8,7 @@ Owns what a final sheet carries.
 - Refuse a size where a segno or coda prints on the baseline of the chord beside it and touches it. Why: the sign and the chord root read as 1 smudge.
 - Print the song title small, once, at the top right of every page. Why: a printed sheet is found in a stack by its corner.
 - Set all text in SF Pro Display, installed from Apple on every machine that edits a score. Why: it carries every Vietnamese letter in all 4 styles.
-- Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords, giving bars with more chords more width. Why: chords are what gets read first.
+- Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords. Why: chords are what gets read first.
 #### Chords and signs
 - Keep a chord baseline within 2.5 staff spaces of the staff top on a line with no notes. Why: the gate needs a stated distance, and the layout seats chords just above that.
 - In a MuseScore 3 file, accept the fixed hold that program keeps after a mid-line barline, up to 1.7 staff spaces, and seat the rest at the barline. Why: its layout holds that chord there whatever the offset, and freeing it from automatic placement runs it into lyrics and voltas.
@@ -42,6 +42,7 @@ Owns what a final sheet carries.
 - Treat a stretch after a repeat's end, cued for piano with no lyric label, as an interlude. Why: a piano-only passage there is the pianist's.
 - In a kept bar whose chosen staff has no notes, take the notes of the other staff. Why: an instrumental passage can move between staves.
 - In a kept part with 2 staves, keep the staff cued Piano or Key, otherwise the top staff; list each choice per song. Why: the staff the pianist plays can sit on either line.
+- Never let chord text set a bar's width, on any sheet: bars with notes take width from their notes, and chords that do not fit put fewer bars on the line. Why: a bar's length shows time, not the length of a name.
 - Make empty bars in a piano line equal width. Why: even bars show the rhythm at a glance.
 - Join a short run of empty bars to the line above, even a line with notes, when the notes stay legible. Why: a line of 2 empty bars wastes height.
 - Avoid a lone bar on a piano line: move a neighbouring bar onto its line, even from a line of kept notes, unless the bar alone truly fills the line. Why: a stretched lone bar reads as wide and empty.
