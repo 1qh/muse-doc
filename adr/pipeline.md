@@ -33,6 +33,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Store the embedded chord list by name in every published score's style, never by a build path. Why: a build path is machine-local and resolves nowhere else.
 - Cap each sheet at 150 MuseScore launches during its search, a piano sheet at 250 because it packs lines from the render and seeks the largest chords on 1 page, then keep the best layout found or refuse the sheet and list it. Why: 1 hard sheet must not hold the rest for hours.
 - Publish each song the moment it passes its gate, not at the end of a run. Why: a finished song owes the reader nothing further.
+- Build each song in its own staging folder, copied into the sheets repo only under the publish lock. Why: publishing resets that repo, wiping any other song still building there.
 - Reuse 1 MuseScore process per batch wherever its job mode allows. Why: each launch costs seconds, and the search makes many.
 - Fail fast in order of cost: preflight every song in seconds (decode, key, piano parts, tests, lint), then 1 layout per sheet through the final-PDF checks, then the search, then the gate as confirmation. Why: a defect visible in seconds must not wait hours.
 - Stop a song at its first refusal and let other songs continue; refuse a chain whose tests or controls fail before any build. Why: 1 song must not block the rest, and a failed check must never run on.
