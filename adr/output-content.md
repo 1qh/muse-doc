@@ -20,7 +20,7 @@ Owns what a final sheet carries.
 - Require identical MuseScore playback between a chord's long and short forms on both MuseScore files, with printing through a custom chord file; a form that cannot match keeps its long name. Why: a chord that prints right must also sound right.
 - Write segno and coda as the score application's own built-in signs, enlarged through its own size setting. Why: a raw character behaves as plain text.
 - Print segno and coda signs at least 1.6 times the chord size, each in an outlined box bolder than the source's, red for segno and blue for coda, in the chord row, on every sheet. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
-- Print no jump words: a jump is the same boxed sign as its target, at the end of its bar, nearer its own line than the line above, beside any other sign in that bar; a target opens its line at the line's left edge, before the clef. Why: the sign alone reads faster, and it stays on the bar it belongs to.
+- Print no jump words: a jump is the same boxed sign as its target, at the end of its bar, nearer its own line than the line above, beside any other sign in that bar, which widens to hold both, and never over a chord; a target opens its line at the line's left edge, before the clef. Why: the sign alone reads faster, and it stays on the bar it belongs to.
 - Keep every jump a real jump in both MuseScore files. Why: playback must still follow it.
 #### Layout
 - Print no empty staff on a line that shares it with another staff, in any file, including MuseScore 3's first line; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
