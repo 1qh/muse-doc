@@ -70,6 +70,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 ## Mechanism
 - MuseScore 4 import keeps jump words and signs as staff text, so the port rewrites them into jump elements and markers carrying `<sym>`, `markerType`, `markerCenterOnSymbol` and `musicSymbolSize`. An untyped marker prints at the end of its bar.
 - MuseScore 3 import writes the signs and jumps itself, so the port only sizes them.
+- Embed the chord list in each `-ms3` file's style, because that program otherwise prints a slash chord from its shipped list as a staircase.
 - The MuseScore 3 style adds `staffFontFace` and `systemFontFace`, MuseScore 3's own names for 2 text styles.
 - A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
 
