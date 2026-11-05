@@ -38,6 +38,12 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Stop a song at its first refusal and let other songs continue; refuse a chain whose tests or controls fail before any build. Why: 1 song must not block the rest, and a failed check must never run on.
 - Size worker count to the free cores, and report build time per song. Why: oversubscribing the machine makes every process slower.
 
+## Class mechanisms
+- Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
+- Check every planted-bug anchor in preflight, in seconds, before any control or build runs. Why: a stale control must not stop a chain late.
+- Tie a saved layout to a digest of the layout code and style, never a hand-raised number. Why: a forgotten bump republishes a stale sheet.
+- Report published state only from `muse.status`, which reads the private repo's HEAD and the build records. Why: a state recalled from a run is not a state checked.
+
 ## Dependencies
 - PyMuPDF: reads glyph positions and vector paths. Rejected: poppler text output, which has no path data. Maintenance: 2.0, inside the window.
 - MuseScore 4.7.6: import, transposition, export. Maintenance: current release line.
