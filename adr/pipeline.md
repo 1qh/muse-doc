@@ -38,6 +38,13 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Stop a song at its first refusal and let other songs continue; refuse a chain whose tests or controls fail before any build. Why: 1 song must not block the rest, and a failed check must never run on.
 - Size worker count to the free cores, and report build time per song. Why: oversubscribing the machine makes every process slower.
 
+## MuseScore Studio exports
+- Decode a Leland export from its vector glyphs, stems and beams, with no new dependency. Why: the PDF holds the exact notation, so a page image adds only error.
+- Read a staff as a second staff WHEN its bar lines fall where the staff above has them. Why: some lines print an extra part and others do not.
+- Read a mid-song key or time change from signs beside no note. Why: these songs change key late.
+- Read 2 segno signs as target then jump, and 2 coda signs as jump then target. Why: these sheets print bare signs without words.
+- Cross-check every export with homr, as every other source. Why: a vector read and an image read share no failure.
+
 ## Class mechanisms
 - Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
 - Check every planted-bug anchor in preflight, in seconds, before any control or build runs. Why: a stale control must not stop a chain late.
