@@ -29,7 +29,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Save each sheet's chosen size, line gap, chord width and line breaks, and start from them on a rebuild, re-proving them in 1 pass. Why: searching again repeats work already decided.
 - Search a sheet's size and lines with chords left as laid out and bars only estimated, then seat chords and even bars on the chosen layout alone; if its final checks fail, step down 1 size, a few times at most. Why: a layout measured at every trial costs thousands of launches for a decision 1 render confirms.
 - Refuse a sheet at the smallest size with a line gap above the base gap. Why: that height could have carried bigger notation, so the search failed.
-- Search a sheet again whenever layout rules change, never from its saved size. Why: starting at the saved size can only hold or shrink it.
+- Record whether a sheet's layout was searched under the current layout rules or only re-proved; a re-proved sheet owes a later search for bigger notation. Why: a re-proof passes the gate but can only hold its size.
 - Store the embedded chord list by name in every published score's style, never by a build path. Why: a build path is machine-local and resolves nowhere else.
 - Cap each sheet at 150 MuseScore launches during its search, a piano sheet at 250 because it packs lines from the render and seeks the largest chords on 1 page, then keep the best layout found or refuse the sheet and list it. Why: 1 hard sheet must not hold the rest for hours.
 - Publish each song the moment it passes its gate, not at the end of a run. Why: a finished song owes the reader nothing further.
