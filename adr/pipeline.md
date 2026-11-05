@@ -45,6 +45,13 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Read 2 segno signs as target then jump, and 2 coda signs as jump then target. Why: these sheets print bare signs without words.
 - Cross-check every export with homr, as every other source. Why: a vector read and an image read share no failure.
 
+## Song file
+- Extract each source once into 1 JSON song file in private `muse-spike`, holding musical facts such as beats and no PDF positions, verified at extraction. Why: every later stage then needs only this file, so a decoder change rebuilds nothing.
+- Apply a correction by editing the song file. Why: a fix to the music has 1 home and its own history.
+- Key a build on the song file, the layout rules and the style, never on decoder or check code. Why: a change that cannot alter a sheet must not rebuild it.
+- Carry a saved layout across a code change by re-proving it in 1 pass, and search only when that proof fails. Why: a finished search stays paid for.
+- Render a search's candidate sizes through 1 MuseScore job, each score carrying its own style. Why: startup is about 3.3 of each launch's 3.4 seconds.
+
 ## Class mechanisms
 - Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
 - Check every planted-bug anchor in preflight, in seconds, before any control or build runs. Why: a stale control must not stop a chain late.
