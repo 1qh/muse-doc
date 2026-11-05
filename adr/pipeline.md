@@ -11,6 +11,14 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 | Transpose | MuseScore `--transpose` | locked | a verifier mismatch on notes, chords or key |
 | Export | MuseScore `mscore` with a fixed style file | locked | a header, footer or banned text in the PDF |
 
+## Source encodings
+- Decode MuseScore-exported lead sheets through a Leland decoder, one more entry in the 1-per-encoding table. Why: the music glyphs are standard SMuFL characters.
+- Keep a mid-song key change in the score and move it by the song's own interval. Why: the change belongs to the song.
+
+## Orchestral score
+- Port an orchestral source as every staff printed, in its original key, with transposing instruments kept, to the 2 MuseScore files and 1 PDF only. Why: the file is the whole score, and the piano sheet and favourite tone do not apply.
+- Exempt an orchestral score from the 2-page limit and the line-layout rules, keeping the source's system breaks. Why: a full score reads system by system.
+
 ## MuseScore 3 file
 - Build each `-ms3` file with MuseScore 3.6.2 from the pipeline's own MusicXML, never from a MuseScore 4 export. Why: the export drops chord extensions.
 - Hold notes, chords, chord beats and jumps identical to the latest file through the gate; layout may differ. Why: version 3 lays music out differently.
