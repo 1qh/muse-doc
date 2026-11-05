@@ -15,6 +15,8 @@ Owns what a final sheet carries.
 - Place each chord on its true beat: a lone chord in a bar without notes on beat 1, several chords in a bar without notes on real beats by their order, a lone chord in a bar with notes on beat 1 unless the source prints it exactly over a note in the 2nd half, and several chords in a bar with notes on the notes the source aligns them to. Why: a chord that looks right and plays late sounds wrong.
 - Print every beat-1 chord with its left edge exactly at the barline, no gap, with or without notes, and right after the clef and key on a line start; left-align a mid-bar chord to its beat. Why: the same position everywhere reads at a glance, and centred chords shift with their width.
 - Seat chords close above the staff, about 1 staff space, on a shared baseline per line that clears the highest note. Why: a chord reads as belonging to the bar it sits on.
+- Print every chord in its shortest form: `maj7` as `Δ`, `maj9` as `Δ9`, `add2` and `add9` as `2`, `sus4` as `sus`, `m7(b5)` as `ø`, `dim` as `°`, `dim7` as `°7`, `7(b9)` as `7b9`, `m7(add4)` as `m7add4`; other forms stay. Why: short names read faster and leave more room on a line.
+- Keep each chord's musical meaning for playback and transposition on both MuseScore files, whatever its printed form. Why: a chord that prints right must also sound right.
 - Write segno and coda as the score application's own built-in signs, enlarged through its own size setting. Why: a raw character behaves as plain text.
 - Print segno and coda signs at least 1.6 times the chord size, and the jump words To Coda and D.S. al Coda in bold below the chord size. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
 #### Layout
