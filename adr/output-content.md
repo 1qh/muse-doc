@@ -19,9 +19,8 @@ Owns what a final sheet carries.
 - Print segno and coda signs at least 1.6 times the chord size, and the jump words To Coda and D.S. al Coda in bold below the chord size. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
 #### Layout
 - Print no empty staff on a line that shares it with another staff, in any file, including MuseScore 3's first line; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
-- Never start a line on a bar without its own chord: move the break so a continuing bar stays with its chord, treating any bars-per-line limit as a guide. Why: a player reaching a chordless line start must look back up a line.
 - Keep the original-tone and favourite-tone PDFs to 2 pages at most. Why: more pages mean page turns while performing.
-- Lay out lines for reading, independent of the source: start each line at 8 bars and halve only a line whose chords or notes do not fit, avoiding a stranded single bar, then a break on a tied note. Why: short bars stay compact and wide bars get room.
+- Lay out lines for reading, independent of the source and with no bars-per-line count: a section mark starts a line; no line starts on a chordless bar or breaks on a tied note where avoidable; no stranded single bar; each line fills until the next bar does not fit; between equal options, break at the chord change nearest a phrase boundary. Why: a count knows nothing about the music and forces bad breaks.
 - Scale each song to the largest notation that fits 2 pages with at most 15% of lines holding 2 bars or fewer, with lines spread evenly. Why: bigger reads better and blank space serves nothing.
 
 #### Source mistakes
@@ -43,8 +42,7 @@ Owns what a final sheet carries.
 - Treat a stretch after a repeat's end, cued for piano with no lyric label, as an interlude. Why: a piano-only passage there is the pianist's.
 - In a kept bar whose chosen staff has no notes, take the notes of the other staff. Why: an instrumental passage can move between staves.
 - In a kept part with 2 staves, keep the staff cued Piano or Key, otherwise the top staff; list each choice per song. Why: the staff the pianist plays can sit on either line.
-- Start each piano line at up to 16 bars and split only a line whose chords or notes do not fit, merging neighbours whenever they fit. Why: empty bars need only chord room, and a pianist wants the song compact.
-- Make empty bars in a piano line equal width, using 16, 12 or 8 bars per line, whichever is the most that lets every chord fit evenly with its gap. Why: even bars show the rhythm at a glance.
+- Make empty bars in a piano line equal width. Why: even bars show the rhythm at a glance.
 - Join a short run of empty bars to the line above, even a line with notes, when the notes stay legible. Why: a line of 2 empty bars wastes height.
 - Avoid a lone bar on a piano line: move a neighbouring bar onto its line, even from a line of kept notes, unless the bar alone truly fills the line. Why: a stretched lone bar reads as wide and empty.
 - Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
