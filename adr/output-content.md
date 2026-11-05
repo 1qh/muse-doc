@@ -48,6 +48,7 @@ Owns what a final sheet carries.
 - Never let chord text set a bar's width, on any sheet: bars with notes take width from their notes, and chords that do not fit put fewer bars on the line. Why: a bar's length shows time, not the length of a name.
 - Make empty bars in a piano line equal width. Why: even bars show the rhythm at a glance.
 - Join a short run of empty bars to the line above, even a line with notes, when the notes stay legible. Why: a line of 2 empty bars wastes height.
+- Let a lyric label sit second on a piano line WHEN a section mark on the bar before opens that line. Why: starting both would strand the mark's bar alone.
 - Avoid a lone bar on a piano line: move a neighbouring bar onto its line, even from a line of kept notes, unless the bar alone truly fills the line. Why: a stretched lone bar reads as wide and empty.
 - Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
 - Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words, per label where 1 text stacks several, and keep a bold cue sharing that text whole. Why: these are the map of the song and hint lines cost height.
