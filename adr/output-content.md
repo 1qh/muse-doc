@@ -12,13 +12,16 @@ Owns what a final sheet carries.
 #### Chords and signs
 - Keep a chord baseline within 2.5 staff spaces of the staff top on a line with no notes. Why: the gate needs a stated distance, and the layout seats chords just above that.
 - In a MuseScore 3 file, accept the fixed hold that program keeps after a mid-line barline, up to 1.7 staff spaces, and seat the rest at the barline. Why: its layout holds that chord there whatever the offset, and freeing it from automatic placement runs it into lyrics and voltas.
+- Assign a chord to the bar holding the note or rest under it, never by a fixed distance from the barline; a chord with no event under it in its bar belongs to the next bar. Why: a long name can start left of the barline it serves.
 - Place each chord on its true beat: a lone chord in a bar without notes on beat 1, several chords in a bar without notes on real beats by their order, a lone chord in a bar with notes on beat 1 unless the source prints it exactly over a note in the 2nd half, and several chords in a bar with notes on the notes the source aligns them to. Why: a chord that looks right and plays late sounds wrong.
 - Print every beat-1 chord with its left edge exactly at the barline, no gap, with or without notes, and right after the clef and key on a line start; left-align a mid-bar chord to its beat. Why: the same position everywhere reads at a glance, and centred chords shift with their width.
 - Seat chords close above the staff, about 1 staff space, on a shared baseline per line that clears the highest note. Why: a chord reads as belonging to the bar it sits on.
 - Print every chord in its shortest form that plays the same as its long form: `maj7` as `Δ7`, `maj9` as `Δ9`, `add2` and `add9` as `2`, `sus4` as `sus`, `m7(b5)` as `ø` (`ø7` in `-ms3` files), `dim` as `°`, `dim7` as `°7`, `7(b9)` as `7♭9`, `m7(add4)` as `m7add4`; other forms stay. Why: short names read faster and leave more room on a line.
 - Require identical MuseScore playback between a chord's long and short forms on both MuseScore files, with printing through a custom chord file; a form that cannot match keeps its long name. Why: a chord that prints right must also sound right.
 - Write segno and coda as the score application's own built-in signs, enlarged through its own size setting. Why: a raw character behaves as plain text.
-- Print segno and coda signs at least 1.6 times the chord size, and the jump words To Coda and D.S. al Coda in bold below the chord size. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
+- Print segno and coda signs at least 1.6 times the chord size, each in an outlined box bolder than the source's, red for segno and blue for coda, in the chord row, on every sheet. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
+- Print no jump words: a jump is the same boxed sign as its target, at the end of its bar, and a target opens its line after the clef and key. Why: the sign alone reads faster, and it stays on the bar it belongs to.
+- Keep every jump a real jump in both MuseScore files. Why: playback must still follow it.
 #### Layout
 - Print no empty staff on a line that shares it with another staff, in any file, including MuseScore 3's first line; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
 - Keep the original-tone and favourite-tone PDFs to 2 pages at most. Why: more pages mean page turns while performing.
@@ -38,7 +41,8 @@ Owns what a final sheet carries.
 
 ## Piano PDF
 - Print 1 staff per line, in the favourite tone. Why: a pianist voices from chords.
-- Keep notes only in the intro, interlude and outro; every other bar is empty with chords above and its rest hidden. Why: other instruments' notes are not the pianist's concern.
+- Keep notes in the intro, interlude and outro, in every bar holding an accent, and from any bar whose cue contains fill or tutti through the following bars until the next chord change; every other bar is empty with chords above and its rest hidden. Why: fills and accented hits are what the pianist must play with, and other notes are not the pianist's concern.
+- Keep a whole bar when any note in it is accented. Why: the notes around a hit place it.
 - Treat bars before the first verse or section mark as the intro, a labelled interlude or an instrumental stretch without lyric labels as an interlude, and bars after the last chorus section as the outro; list each inferred boundary per song. Why: many sheets do not label these parts.
 - Treat a coda without a lyric label as sung until the unbroken run of note bars that ends the song, which is the outro; treat a shorter coda stretch before a lyric label, and any lone kept bar inside the song, as sung. Why: isolated hits belong to the band, while the closing run is the pianist's.
 - Treat an ending lyric that repeats an earlier section as sung for that section's length. Why: the singer still carries those bars.
