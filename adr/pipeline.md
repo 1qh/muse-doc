@@ -59,7 +59,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Pass the clear gap in staff spaces, and each chord's measured offset between its text box and its ink, to the extension through score tags, and run it again until the ink sits on target. Why: the gap has 1 home in the code, and the extension sees text boxes while the gate judges ink.
 - Judge crowding, chord collisions and text on text only on a seated layout, never on a plan or a wrap correction. Why: unseated chords collide by construction, so an earlier check refuses every layout.
 - Fail a measurement that cannot read what it measures, never return a neutral value in its place. Why: a zero chord need packed 12 bars on 1 line and read as a seating fault.
-- Install the extension from the code repo into MuseScore's extensions folder before a build. Why: a build must not depend on a hand-installed copy.
+- Install the extension from the code repo into MuseScore's extensions folder under a name and address carrying a digest of its own bytes, and run it by that address. Why: a build must not depend on a hand-installed copy, and 2 runs of different versions, such as planted-bug controls, must never share 1 installed copy.
 
 ## Measured MuseScore behaviour
 - `mscore -j` loads every score of a job file in 1 process; an entry takes a list of outputs and a `transpose` object, and nothing keeps the program running between jobs.
