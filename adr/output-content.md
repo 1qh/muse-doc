@@ -56,4 +56,5 @@ Owns what a final sheet carries.
 - Avoid a lone bar on a piano line: move a neighbouring bar onto its line, even from a line of kept notes, unless the bar alone truly fills the line. Why: a stretched lone bar reads as wide and empty.
 - Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
 - Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words, per label where 1 text stacks several, and keep a bold cue sharing that text whole. Why: these are the map of the song and hint lines cost height.
-- Size a piano sheet by the same rule as every other sheet, with no page limit. Why: a pianist reads the same notation size as the band.
+- Size a piano sheet for density, the opposite of the band sheets: the size putting the most bars on each line and the fewest lines, never below the smallest readable size, with no lone bar and at most 15% of lines holding 2 bars or fewer, and no page limit. Why: a pianist voices from chords and wants as many as possible in 1 glance; a sparse piano sheet loses its point.
+- Decide every layout question from the performer's own use of that sheet, never by asking the owner: a band player reads 1 part with room, a pianist scans chords. Why: the owner's expectation is the performer's common sense.
