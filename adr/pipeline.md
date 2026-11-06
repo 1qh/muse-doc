@@ -100,6 +100,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 
 - MuseScore 3.6.2: the `-ms3` file only. Exception to latest-only and the 6-month window, because the file exists to serve version 3; used only when the MuseScore 3 deferral lifts; trigger to revisit: nobody needs version 3. Runs under Rosetta on Apple silicon.
 - pytest, ruff, mypy: tests, lint, types in `muse`. Maintenance: active.
+- git-filter-repo 2.47.0: strips superseded sheet versions from the sheets repo's history by blob. Rejected: BFG, which deletes by file name and so empties every earlier commit of current sheets too. Exception to the 6-month window: its last release is 2.47.0 while its repository stays active and Git's own documentation recommends it for history rewrites; trigger to revisit: the repository is archived or Git ships the capability itself.
 
 ## Mechanism
 - MuseScore 4 import keeps jump words and signs as staff text, so the port rewrites them into jump elements and markers carrying `<sym>`, `markerType`, `markerCenterOnSymbol` and `musicSymbolSize`. An untyped marker prints at the end of its bar.
