@@ -36,6 +36,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Stop a song at its first refusal and let other songs continue; refuse a chain whose tests or controls fail before any build. Why: 1 song must not block the rest, and a failed check must never run on.
 - Size worker count to the free cores, and report build time per song. Why: oversubscribing the machine makes every process slower.
 - Queue songs singly so a free worker takes the next song, publish 1 song at a time under a lock, and run planted-bug controls in parallel. Why: a fixed batch waits on its slowest song, and publishing rewrites shared history.
+- Build songs in the owner's priority order, kept in private `muse-spike`, then the rest by name, and publish from the 1 process that collects finished songs. Why: the songs wanted first arrive first, and 1 collector serialises publishing without a lock file.
 - Prove every pipeline change end to end on 1 song before a full run, and never change the code a running build loads. Why: each untested change landed mid-run and cost hours of builds.
 
 ## MuseScore Studio exports
