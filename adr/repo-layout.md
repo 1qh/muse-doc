@@ -5,6 +5,7 @@ Owns which repo holds what.
 ## MUST
 - Keep only PDF and MuseScore files in `muse-sheets`, its history included. Why: the repo is the deliverable and nothing else.
 - Keep `muse-sheets` public. Why: the owner chose to share the deliverable.
+- Name every song a publish brings in its commit message, `feat: publish <songs>`. Why: the history purge leaves earlier commits without files, so a commit's file list cannot show what arrived.
 - Give each song 1 folder named `<name>/` holding `<name>-<original>.mscz`, `<name>-<original>.pdf`, `<name>-<favourite>.pdf` and `<name>-<favourite>-piano.pdf`. Why: every use of a song sits in 1 place.
 - Give an orchestral score only `<name>-<original>.mscz` and `<name>-<original>.pdf`. Why: it has no favourite tone or piano sheet.
 - Skip `<name>-<favourite>.pdf` when the original already is the favourite tone. Why: it would duplicate `<name>-<original>.pdf`.
