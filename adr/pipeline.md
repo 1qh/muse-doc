@@ -57,6 +57,12 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Climb to larger sizes when the smallest fail, before refusing a sheet. Why: text keeps its size, so the smallest notation can collide where a larger one fits.
 - Render a search's candidate sizes through 1 MuseScore job, each score carrying its own style. Why: startup is about 3.3 of each launch's 3.4 seconds.
 
+## Calculated layout
+- Measure each sheet once per candidate size, all sizes in 1 MuseScore job, with the page so wide and the last line so unjustified that every bar prints at its natural width. Why: natural widths predict line breaks, so lines are planned in code rather than found by trial renders.
+- Plan line breaks in code to 93% of a line's width, under every line rule, and choose the size from the plan. Why: a planned line held exactly on 7 of 8 sheets measured, and code decides in milliseconds.
+- Render the plan, then correct from measurement until nothing is off: a wrapped line hands its last bar down, empty bars widen to the widest of their line, each chord moves by its own measured response. Why: bars only grow and some chords move twice the distance asked, so a fixed correction overshoots.
+- Turn off automatic placement for every chord symbol and jump sign. Why: placed chords then never set a bar's width, and nothing moves what code placed.
+
 ## Class mechanisms
 - Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
 - Check every planted-bug anchor in preflight, in seconds, before any control or build runs. Why: a stale control must not stop a chain late.
