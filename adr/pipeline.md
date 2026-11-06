@@ -82,6 +82,8 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 ## Class mechanisms
 - Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
 - Check every planted-bug anchor in preflight, in seconds, before any control or build runs. Why: a stale control must not stop a chain late.
+- Mark every test that drives MuseScore itself, and run a planted-bug control against the fast tests alone unless it plants in code only MuseScore runs. Why: the MuseScore tests take minutes, and every control paying for them made the controls take hours.
+- Refuse ink past any edge of the page in the layout's own checks, not only past the right margin. Why: text raised above the first line left the page at the top and passed every vector check.
 - Tie a saved layout to a digest of the layout code and style, never a hand-raised number. Why: a forgotten bump republishes a stale sheet.
 - Report published state only from `muse.status`, which reads the private repo's HEAD and the build records. Why: a state recalled from a run is not a state checked.
 
