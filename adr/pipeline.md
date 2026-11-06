@@ -27,19 +27,16 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 
 ## Build cost
 - Key every song's build and gate result on a digest of its source, the code and the style, and skip what is unchanged. Why: adding 1 song or fixing 1 sheet type must not rebuild the rest.
-- Save each sheet's chosen size, line gap, chord width and line breaks, and start from them on a rebuild, re-proving them in 1 pass. Why: searching again repeats work already decided.
-- Search a sheet's size and lines with chords left as laid out and bars only estimated, then seat chords and even bars on the chosen layout alone; if its final checks fail, step down 1 size, a few times at most. Why: a layout measured at every trial costs thousands of launches for a decision 1 render confirms.
-- Refuse a sheet at the smallest size with a line gap above the base gap. Why: that height could have carried bigger notation, so the search failed.
-- Record whether a sheet's layout was searched under the current layout rules or only re-proved; a re-proved sheet owes a later search for bigger notation. Why: a re-proof passes the gate but can only hold its size.
+- Key every cache on what it was built from, never on a name or a path. Why: a name-keyed import from older code was reused and refused every layout.
 - Store the embedded chord list by name in every published score's style, never by a build path. Why: a build path is machine-local and resolves nowhere else.
-- Cap each sheet at 150 MuseScore launches during its search, a piano sheet at 250 because it packs lines from the render and seeks the largest chords on 1 page, then keep the best layout found or refuse the sheet and list it. Why: 1 hard sheet must not hold the rest for hours.
 - Publish each song the moment it passes its gate, not at the end of a run. Why: a finished song owes the reader nothing further.
 - Build each song in its own staging folder, copied into the sheets repo only under the publish lock. Why: publishing resets that repo, wiping any other song still building there.
-- Reuse 1 MuseScore process per batch wherever its job mode allows. Why: each launch costs seconds, and the search makes many.
-- Fail fast in order of cost: preflight every song in seconds (decode, key, piano parts, tests, lint), then 1 layout per sheet through the final-PDF checks, then the search, then the gate as confirmation. Why: a defect visible in seconds must not wait hours.
+- Gather the renders many threads ask for into 1 MuseScore job, and run what 1 sheet decides inside 1 MuseScore process through the extension. Why: MuseScore has no server mode, and each launch costs about 3 seconds.
+- Fail fast in order of cost: preflight every song in seconds (decode, key, piano parts, tests, lint, control anchors), then the layout, then the gate as confirmation. Why: a defect visible in seconds must not wait hours.
 - Stop a song at its first refusal and let other songs continue; refuse a chain whose tests or controls fail before any build. Why: 1 song must not block the rest, and a failed check must never run on.
 - Size worker count to the free cores, and report build time per song. Why: oversubscribing the machine makes every process slower.
 - Queue songs singly so a free worker takes the next song, publish 1 song at a time under a lock, and run planted-bug controls in parallel. Why: a fixed batch waits on its slowest song, and publishing rewrites shared history.
+- Prove every pipeline change end to end on 1 song before a full run, and never change the code a running build loads. Why: each untested change landed mid-run and cost hours of builds.
 
 ## MuseScore Studio exports
 - Read a staff as a second staff WHEN its bar lines fall where the staff above has them. Why: some lines print an extra part and others do not.
@@ -51,20 +48,28 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Extract each source once into 1 JSON song file in private `muse-spike`, holding musical facts such as beats and no PDF positions, verified at extraction. Why: every later stage then needs only this file, so a decoder change rebuilds nothing.
 - Apply a correction by editing the song file. Why: a fix to the music has 1 home and its own history.
 - Key a build on the song file, the layout rules and the style, never on decoder or check code. Why: a change that cannot alter a sheet must not rebuild it.
-- Carry a saved layout across a code change by re-proving it in 1 pass, and search only when that proof fails. Why: a finished search stays paid for.
-- Fail a re-proof when the saved lines break a line rule. Why: lines saved under older rules otherwise waste a build and fall at the gate.
-- Start a search at the sheet's saved size and look near it, with a cap counted per search step rather than reached silently. Why: a cap reached mid-search reads as nothing fitting and drops the sheet to the smallest size.
-- Climb to larger sizes when the smallest fail, before refusing a sheet. Why: text keeps its size, so the smallest notation can collide where a larger one fits.
-- Render a search's candidate sizes through 1 MuseScore job, each score carrying its own style. Why: startup is about 3.3 of each launch's 3.4 seconds.
 
 ## Calculated layout
 - Measure each sheet once per candidate size, all sizes in 1 MuseScore job, with the page so wide and the last line so unjustified that every bar prints at its natural width. Why: natural widths predict line breaks, so lines are planned in code rather than found by trial renders.
-- Plan line breaks in code to 93% of a line's width, under every line rule, and choose the size from the plan. Why: a planned line held exactly on 7 of 8 sheets measured, and code decides in milliseconds.
+- Plan line breaks in code to 93% of a line's width, under every line rule in `output-content.md`, budgeting each empty bar at the widest empty bar of its line and each bar at no less than its chords and their clear gaps, and choose the size from the plan. Why: a planned line held exactly on 7 of 8 sheets measured, and code decides in milliseconds.
 - Render the plan, then correct from measurement until nothing is off: a wrapped line hands its last bar down, empty bars widen to the widest of their line, each chord moves by its own measured response. Why: bars only grow and some chords move twice the distance asked, so a fixed correction overshoots.
+- Judge crowding, chord collisions and text on text only on a seated layout, never on a plan or a wrap correction. Why: unseated chords collide by construction, so an earlier check refuses every layout.
 - Turn off automatic placement for every chord symbol and jump sign. Why: placed chords then never set a bar's width, and nothing moves what code placed.
 - Seat chords inside MuseScore with the pipeline's own extension, run through `--extension`: it moves every beat-1 chord to its barline or line start, lifts each line's chords on 1 baseline clear of cues, brackets and voltas, and starts a line's first chord after any sign there, laying the score out again after each move in the same process. Why: 1 launch measures and places what render-and-parse took dozens of launches to approach.
 - Pass each chord's measured offset between its text box and its ink to the extension through a score tag, and run it again until the ink sits on target. Why: the extension sees text boxes and the gate judges ink.
 - Install the extension from the code repo into MuseScore's extensions folder before a build. Why: a build must not depend on a hand-installed copy.
+
+## Measured MuseScore behaviour
+- `mscore -j` loads every score of a job file in 1 process; an entry takes a list of outputs and a `transpose` object, and nothing keeps the program running between jobs.
+- `mscore --extension <uri>` runs an installed extension on each loaded score before it is written; the extension reads every element's page position and box, moves offsets, and sees the layout redone after `endCmd`.
+- A chord symbol with automatic placement widens its bar to fit its name, whatever `minHarmonyDistance` and `harmonyHarmonyDistance` say; with automatic placement off it never does, and nothing lifts it clear of cues, brackets or voltas.
+- A page 200 inches wide with `lastSystemFillLimit` 1 prints a song on 1 line at natural bar widths; a page of ordinary width stretches every bar to fill its line.
+- A bar's `stretch` only widens it: a bar a repeat barline or another fixed element holds wide never narrows.
+- A score tag (`metaTag`) is how the pipeline passes values to its extension.
+- The extension sees a chord's text box and the gate judges its ink; the 2 differ by up to about 0.5 point a chord, so each chord's offset is measured after 1 run and passed back.
+- Some chords at a line start move several times the distance their offset asks, so a correction computed from 1 fixed scale overshoots.
+- Lines are grouped by page and height; grouping by height alone merges the first lines of 2 pages.
+- A line's first chord starts after the clef, the key and any sign printed there; a start-repeat barline does not move it.
 
 ## Class mechanisms
 - Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
@@ -78,7 +83,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - homr 0.7.0: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
 - Rejected: Audiveris 5.11, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, last release outside the window. Rejected: PDFtoMusic Pro, paid and unneeded.
 
-- MuseScore 3.6.2: the `-ms3` file only. Exception to latest-only and the 6-month window, because the file exists to serve version 3; trigger to revisit: nobody needs version 3. Runs under Rosetta on Apple silicon.
+- MuseScore 3.6.2: the `-ms3` file only. Exception to latest-only and the 6-month window, because the file exists to serve version 3; used only when the MuseScore 3 deferral lifts; trigger to revisit: nobody needs version 3. Runs under Rosetta on Apple silicon.
 - pytest, ruff, mypy: tests, lint, types in `muse`. Maintenance: active.
 
 ## Mechanism
@@ -88,7 +93,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - The MuseScore 3 style adds `staffFontFace` and `systemFontFace`, MuseScore 3's own names for 2 text styles.
 - A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
 
-- Seat and judge chords against the measure boxes the score program exports with `.mpos`, reading only chord ink from the PDF. Why: a barline guessed from drawn strokes confuses stems, beams and short staves.
+- Judge chords against the measure boxes the score program exports with `.mpos`, reading only chord ink from the PDF. Why: a barline guessed from drawn strokes confuses stems, beams and short staves.
 
 ## Refusals
 - Refuse an unknown music encoding by naming its fonts. Why: a wrong decoder reads confident garbage.
@@ -96,6 +101,6 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Refuse a missing SF Pro Display. Why: MuseScore otherwise falls back to another font without saying so.
 
 ## Gate
-- Pass `muse.gate` before publishing: bars, pitches, chords, keys, navigation, inverse transposition, removed text, fonts, chord gap, margins, title, page cap, A4, ink edges, ties over line ends and a homr cross-check. Why: every rule lives in 1 command that states all failures at once.
-- Check chord beats against the rule in `output-content.md`, and the built-in form of jump signs, on both MuseScore files. Why: a chord in the right bar can still play late.
+- Pass `muse.gate` before publishing: bars, pitches, chords, keys, navigation, inverse transposition, removed text, fonts, chord gap, margins, title, A4, ink edges, ties over line ends and a homr cross-check. Why: every rule lives in 1 command that states all failures at once.
+- Check chord beats against the rule in `output-content.md`, and the built-in, boxed, wordless form of jump signs, on every MuseScore file built. Why: a chord in the right bar can still play late.
 - Report a tie over a line end only where its tied run is too long for 1 line. Why: there the break is forced.
