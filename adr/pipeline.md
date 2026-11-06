@@ -62,6 +62,9 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Plan line breaks in code to 93% of a line's width, under every line rule, and choose the size from the plan. Why: a planned line held exactly on 7 of 8 sheets measured, and code decides in milliseconds.
 - Render the plan, then correct from measurement until nothing is off: a wrapped line hands its last bar down, empty bars widen to the widest of their line, each chord moves by its own measured response. Why: bars only grow and some chords move twice the distance asked, so a fixed correction overshoots.
 - Turn off automatic placement for every chord symbol and jump sign. Why: placed chords then never set a bar's width, and nothing moves what code placed.
+- Seat chords inside MuseScore with the pipeline's own extension, run through `--extension`: it moves every beat-1 chord to its barline or line start, lifts each line's chords on 1 baseline clear of cues, brackets and voltas, and starts a line's first chord after any sign there, laying the score out again after each move in the same process. Why: 1 launch measures and places what render-and-parse took dozens of launches to approach.
+- Pass each chord's measured offset between its text box and its ink to the extension through a score tag, and run it again until the ink sits on target. Why: the extension sees text boxes and the gate judges ink.
+- Install the extension from the code repo into MuseScore's extensions folder before a build. Why: a build must not depend on a hand-installed copy.
 
 ## Class mechanisms
 - Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
