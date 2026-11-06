@@ -17,7 +17,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 
 ## Orchestral score
 - Port an orchestral source as every staff printed, in its original key, with transposing instruments kept, to the 2 MuseScore files and 1 PDF only. Why: the file is the whole score, and the piano sheet and favourite tone do not apply.
-- Exempt an orchestral score from the 2-page limit and the line-layout rules, keeping the source's system breaks. Why: a full score reads system by system.
+- Exempt an orchestral score from the size rule and the line-layout rules, keeping the source's system breaks. Why: a full score reads system by system.
 
 ## MuseScore 3 file
 - Build no `-ms3` file and remove any published one while the owner defers them; trigger to resume: the owner asks for MuseScore 3 files again, and every rule below applies unchanged then. Why: the file serves only sharing with older installs, and its build slows every song.

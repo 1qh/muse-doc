@@ -24,10 +24,9 @@ Owns what a final sheet carries.
 - Keep every jump a real jump in both MuseScore files. Why: playback must still follow it.
 #### Layout
 - Print no empty staff on a line that shares it with another staff, in any file, including MuseScore 3's first line; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
-- Keep the original-tone and favourite-tone PDFs to 2 pages at most. Why: more pages mean page turns while performing.
+- Take as many pages as the song needs, on every sheet; a page count is never a limit. Why: readability and consistency outrank page turns.
 - Lay out lines for reading, independent of the source and with no bars-per-line count: a section mark or a verse, pre-chorus, chorus or end label starts a line; no line starts on a chordless bar or breaks on a tied note where avoidable; no stranded single bar; each line fills until the next bar does not fit; between equal options, break at the chord change nearest a phrase boundary. Why: a count knows nothing about the music and forces bad breaks.
-- Scale each song to the largest notation that fits 2 pages with at most 15% of lines holding 2 bars or fewer, with lines spread evenly; a short line first takes a bar from the line above it. Why: bigger reads better and blank space serves nothing.
-- WHEN a song held to 15% would stay at the smallest size with height to spare, allow up to 30% short lines for it and list the song. Why: bigger notes outrank fuller lines.
+- Scale each sheet to the largest notation up to a size of 2.0 whose lines fill at least 85% of every page they need, with at most 15% of lines holding 2 bars or fewer, lines spread evenly, and a short line first taking a bar from the line above it. Why: bigger reads better, blank space serves nothing, and the cap keeps songs alike.
 
 #### Source mistakes
 - Correct a mistake in a source sheet wherever evidence inside the song settles the right notation: a repeated section, the harmony, the bar length, the sibling verse. Why: the output must be musically correct, not a copy of an error.
@@ -56,4 +55,4 @@ Owns what a final sheet carries.
 - Avoid a lone bar on a piano line: move a neighbouring bar onto its line, even from a line of kept notes, unless the bar alone truly fills the line. Why: a stretched lone bar reads as wide and empty.
 - Space 2 chords in an empty bar by beat position. Why: position shows the change without extra marks.
 - Keep every cue, repeat, volta, jump sign, section mark, tempo and style; shorten each hint lyric to its first few words, per label where 1 text stacks several, and keep a bold cue sharing that text whole. Why: these are the map of the song and hint lines cost height.
-- Fit 1 page, going to 2 only when chords would otherwise fall below a readable size. Why: 1 page needs no page turn.
+- Size a piano sheet by the same rule as every other sheet, with no page limit. Why: a pianist reads the same notation size as the band.
