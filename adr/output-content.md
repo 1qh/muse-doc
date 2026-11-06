@@ -38,7 +38,7 @@ Owns what a final sheet carries.
 
 ## Print mode
 - Build in print mode while the owner needs every song printed for a rehearsal, and leave it the moment the owner asks for the strict rules again; trigger to restore: the owner says so. Why: polish rules were refusing sheets a musician reads without trouble.
-- In print mode, loosen only these: a beat-1 chord within 2 points of its barline, 0.5 chord sizes of clear space between 2 chords, no page-fill floor, at most 40% of lines holding 2 bars or fewer, and empty bars of a line within 4 points of each other. Why: none of them changes what a musician reads or plays.
+- In print mode, loosen only these: a beat-1 chord within 2 points of its barline, 0.5 chord sizes of clear space between 2 chords, no page-fill floor, at most 40% of lines holding 2 bars or fewer, empty bars of a line within 4 points of each other, and a bar whose own chords crowd may widen to hold them. Why: none of them changes what a musician reads or plays.
 - Keep every other rule strict in print mode: notes, chords, keys, jumps, repeats, boxed signs, chords in the right bar, no text on text, nothing past the page, piano kept bars, no lone bar. Why: these decide whether the sheet is right.
 - Key every build on the mode, so a sheet built in print mode is never reused as strict. Why: the strict rules return unchanged.
 
