@@ -50,13 +50,14 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Key a build on the song file, the layout rules and the style, never on decoder or check code. Why: a change that cannot alter a sheet must not rebuild it.
 
 ## Calculated layout
-- Measure each sheet once per candidate size, all sizes in 1 MuseScore job, with the page so wide and the last line so unjustified that every bar prints at its natural width. Why: natural widths predict line breaks, so lines are planned in code rather than found by trial renders.
-- Plan line breaks in code to 93% of a line's width, under every line rule in `output-content.md`, budgeting each empty bar at the widest empty bar of its line and each bar at no less than its chords and their clear gaps, and choose the size from the plan. Why: a planned line held exactly on 7 of 8 sheets measured, and code decides in milliseconds.
-- Render the plan, then correct from measurement until nothing is off: a wrapped line hands its last bar down, empty bars widen to the widest of their line, each chord moves by its own measured response. Why: bars only grow and some chords move twice the distance asked, so a fixed correction overshoots.
-- Judge crowding, chord collisions and text on text only on a seated layout, never on a plan or a wrap correction. Why: unseated chords collide by construction, so an earlier check refuses every layout.
+- Measure each sheet once per candidate size, all sizes in 1 MuseScore job, with the page so wide and the last line so unjustified that every bar prints at its natural width, and run the extension on that render in its measure mode, which writes back through a score tag the share each bar must grow to hold its chords apart by the clear gap. Why: natural widths and chord needs predict line breaks, so lines are planned in code rather than found by trial renders.
+- Plan line breaks in code to 93% of a line's width, under every line rule in `output-content.md`, budgeting each bar at its natural width grown by its chord share and each empty bar at the widest empty bar of its line, and choose the size from the plan. Why: a planned line held exactly on 7 of 8 sheets measured, and code decides in milliseconds.
+- Render the plan and hand a wrapped line's last bar down until every line holds as planned. Why: a plan is a prediction, and only a render shows a wrap.
 - Turn off automatic placement for every chord symbol and jump sign. Why: placed chords then never set a bar's width, and nothing moves what code placed.
-- Seat chords inside MuseScore with the pipeline's own extension, run through `--extension`: it moves every beat-1 chord to its barline or line start, lifts each line's chords on 1 baseline clear of cues, brackets and voltas, and starts a line's first chord after any sign there, laying the score out again after each move in the same process. Why: 1 launch measures and places what render-and-parse took dozens of launches to approach.
-- Pass each chord's measured offset between its text box and its ink to the extension through a score tag, and run it again until the ink sits on target. Why: the extension sees text boxes and the gate judges ink.
+- Fit and seat chords inside MuseScore with the pipeline's own extension, run through `--extension`, laying the score out again after each change in the same process: it widens through `userStretch` each bar whose chords lack the clear gap to the next chord, evens a line's empty bars to its widest, moves every beat-1 chord to its barline or line start, starts a line's first chord after any sign there, and lifts each line's chords on 1 baseline clear of cues, brackets and voltas. Why: 1 launch measures and places what render-and-parse took dozens of launches to approach.
+- Pass the clear gap in staff spaces, and each chord's measured offset between its text box and its ink, to the extension through score tags, and run it again until the ink sits on target. Why: the gap has 1 home in the code, and the extension sees text boxes while the gate judges ink.
+- Judge crowding, chord collisions and text on text only on a seated layout, never on a plan or a wrap correction. Why: unseated chords collide by construction, so an earlier check refuses every layout.
+- Fail a measurement that cannot read what it measures, never return a neutral value in its place. Why: a zero chord need packed 12 bars on 1 line and read as a seating fault.
 - Install the extension from the code repo into MuseScore's extensions folder before a build. Why: a build must not depend on a hand-installed copy.
 
 ## Measured MuseScore behaviour
@@ -65,7 +66,10 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - A chord symbol with automatic placement widens its bar to fit its name, whatever `minHarmonyDistance` and `harmonyHarmonyDistance` say; with automatic placement off it never does, and nothing lifts it clear of cues, brackets or voltas.
 - A page 200 inches wide with `lastSystemFillLimit` 1 prints a song on 1 line at natural bar widths; a page of ordinary width stretches every bar to fill its line.
 - A bar's `stretch` only widens it: a bar a repeat barline or another fixed element holds wide never narrows.
-- A score tag (`metaTag`) is how the pipeline passes values to its extension.
+- A score tag (`metaTag`) carries values both ways between the pipeline and its extension: `curScore.metaTag` reads 1 and `setMetaTag` writes 1 into the saved file.
+- A bar's `userStretch` is writable from the extension and lays out again after `endCmd`.
+- Automatic placement widens a bar for its chords with less than the clear gap: a natural render with it on still printed 29 chord collisions, so the pipeline sets chord room itself.
+- Chords that overlap in a render merge into 1 text span in the PDF, so chord names are never counted from the spans of a render whose chords can overlap.
 - The extension sees a chord's text box and the gate judges its ink; the 2 differ by up to about 0.5 point a chord, so each chord's offset is measured after 1 run and passed back.
 - Some chords at a line start move several times the distance their offset asks, so a correction computed from 1 fixed scale overshoots.
 - Lines are grouped by page and height; grouping by height alone merges the first lines of 2 pages.
