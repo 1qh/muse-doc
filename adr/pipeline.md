@@ -20,6 +20,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Exempt an orchestral score from the 2-page limit and the line-layout rules, keeping the source's system breaks. Why: a full score reads system by system.
 
 ## MuseScore 3 file
+- Build no `-ms3` file and remove any published one while the owner defers them; trigger to resume: the owner asks for MuseScore 3 files again, and every rule below applies unchanged then. Why: the file serves only sharing with older installs, and its build slows every song.
 - Build each `-ms3` file with MuseScore 3.6.2 from the pipeline's own MusicXML, never from a MuseScore 4 export. Why: the export drops chord extensions.
 - Hold notes, chords, chord beats and jumps identical to the latest file through the gate; layout may differ. Why: version 3 lays music out differently.
 - Withhold a file that cannot match, and report the song and reason. Why: a wrong file is worse than a missing one at a rehearsal.
