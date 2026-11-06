@@ -13,6 +13,9 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 
 ## Source encodings
 - Decode MuseScore-exported lead sheets through a Leland decoder reading vector glyphs, stems and beams, one more entry in the 1-per-encoding table, with no new dependency. Why: the music glyphs are standard SMuFL characters, and a page image adds only error.
+- Find a Leland staff line as the longest run of touching strokes over 100pt at 1 height, never a single long stroke. Why: an export draws some staves 1 bar at a time, and a stack of short ledger lines touches nowhere.
+- Group a lower staff into the system above when every bar line it has falls on the upper staff's and either both end together or a bar line runs down from the upper staff into it. Why: a part entering later starts its staff late, and a part leaving early ends it soon.
+- Hold every Leland source's decoded line starts equal to the bar numbers it prints at the left of each line. Why: a dropped or split staff shifts every later bar while each bar still reads.
 - Keep a mid-song key change in the score and move it by the song's own interval. Why: the change belongs to the song.
 
 ## Orchestral score
