@@ -72,6 +72,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Install the extension from the code repo into MuseScore's extensions folder under a name and address carrying a digest of its own bytes, and run it by that address. Why: a build must not depend on a hand-installed copy, and 2 runs of different versions, such as planted-bug controls, must never share 1 installed copy.
 
 ## Measured MuseScore behaviour
+- Rewrite every Expression an import produces as staff text with the same placement, before any layout. Why: MuseScore imports italic-only words as an Expression and sets all expressions under a staff on 1 row without avoiding each other, so a long cue overprints a later one.
 - `mscore -j` loads every score of a job file in 1 process; an entry takes a list of outputs and a `transpose` object, and nothing keeps the program running between jobs.
 - `mscore --extension <uri>` runs an installed extension on each loaded score before it is written; the extension reads every element's page position and box, moves offsets, and sees the layout redone after `endCmd`.
 - An extension receives the plugin API's score functions and no process API: `writeScore` exports only the score it was launched with, `readScore` with its noninteractive flag is not implemented and returns nothing, and `newQProcess` is undefined; 1 launch therefore serves 1 score, and MuseScore offers no way to keep 1 process serving many.
