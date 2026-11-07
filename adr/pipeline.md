@@ -37,6 +37,8 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Publish each song the moment it passes its gate, not at the end of a run. Why: a finished song owes the reader nothing further.
 - Build each song in its own staging folder, copied into the sheets repo only under the publish lock. Why: publishing resets that repo, wiping any other song still building there.
 - Gather the renders many threads ask for into 1 MuseScore job, and run what 1 sheet decides inside 1 MuseScore process through the extension. Why: MuseScore has no server mode, and each launch costs about 3 seconds.
+- Fail every render of a MuseScore job that raises, with the error as its reason, and keep the batcher serving the renders after it. Why: a job that raises past the batcher leaves it flushing, and every later render in that process waits for ever.
+- Print every thread's stack when a build process receives SIGUSR1. Why: a hung build shows where it waits without a debugger that needs root.
 - Fail fast in order of cost: preflight every song in seconds (decode, key, piano parts, tests, lint, control anchors), then the layout, then the gate as confirmation. Why: a defect visible in seconds must not wait hours.
 - Stop a song at its first refusal and let other songs continue; refuse a chain whose tests or controls fail before any build. Why: 1 song must not block the rest, and a failed check must never run on.
 - Start 1 song worker per song up to the core count, split the cores among them as launch slots so heavy launches never exceed the cores, and report build time per song. Why: a worker count read from 1 load sample stays fixed for the whole build, and a load spike at start runs every song in series on an idle machine.
