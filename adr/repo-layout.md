@@ -8,7 +8,8 @@ Owns which repo holds what.
 - Keep `muse-sheets` public. Why: the owner chose to share the deliverable.
 - Name every song a publish brings in its commit message, `feat: publish <songs>`. Why: a reader scans the commit list for what arrived.
 - Purge from the sheets repo's history only the PDF and MuseScore versions absent from the current sheets, by blob, and keep every current file in every commit that carries it. Why: history stays as light as the sheets themselves, and each commit's file list shows only the songs it changed.
-- Publish only through `muse.publish`, per song: a song passing its gate publishes, a failing song keeps its last good published folder and is listed with the reason, and only a repo-wide problem such as a stray file refuses the run. Why: 1 failing song must not hold back the rest. It then purges replaced binaries from `muse-sheets` history with BFG and force-pushes, comparing the HEAD tree id before and after. Why: re-exported PDFs and scores otherwise accumulate on the remote.
+- Publish only through `muse.publish`, per song: a song passing its gate publishes, a failing song keeps its last good published folder and is listed with the reason, and only a repo-wide problem such as a stray file refuses the run. Why: 1 failing song must not hold back the rest.
+- Purge replaced binaries from `muse-sheets` history with git-filter-repo after each publish, and force-push only when the HEAD tree id is unchanged by the purge. Why: re-exported PDFs and scores otherwise accumulate on the remote, and a purge that touches a current file must push nothing.
 
 #### Song folders
 - Give each song 1 folder named `<name>/` holding `<name>-<original>.mscz`, `<name>-<original>.pdf`, `<name>-<favourite>.pdf` and `<name>-<favourite>-piano.pdf`. Why: every use of a song sits in 1 place.
