@@ -120,7 +120,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - The MuseScore 3 style adds `staffFontFace` and `systemFontFace`, MuseScore 3's own names for 2 text styles.
 - A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
 
-- Judge a beat-1 chord from where its bar's music opens: the barline, or the end of a key or time signature printed right after it, mid-line as at a line's start, as the extension seats it; the signature run ends at the first note, however far above or below the staff its ledger lines put it. Why: 2 definitions of 1 edge refuse a correctly seated chord.
+- Judge a beat-1 chord from where its bar's music opens: the barline, or the end of a key or time signature printed right after it, mid-line as at a line's start, as the extension seats it; the signature run ends at the first note, however far above or below the staff its ledger lines put it, and is 1 tight run starting right at the barline, so a courtesy signature at a bar's far end opens nothing. Why: 2 definitions of 1 edge refuse a correctly seated chord.
 - Judge chords against the measure boxes the score program exports with `.mpos`, reading only chord ink from the PDF. Why: a barline guessed from drawn strokes confuses stems, beams and short staves.
 
 ## Refusals
