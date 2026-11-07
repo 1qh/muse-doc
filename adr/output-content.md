@@ -25,6 +25,7 @@ Owns what a final sheet carries.
 - Keep every jump a real jump in every MuseScore file built. Why: playback must still follow it.
 #### Layout
 - Print no empty staff on a line that shares it with another staff, in any file, including MuseScore 3's first line; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
+- Count a staff carrying chord symbols as holding music, even over a bar of written rests. Why: the band reads the chords and the rest rhythm from that staff, as the source prints it.
 - Take as many pages as the song needs, on every sheet; a page count is never a limit. Why: readability and consistency outrank page turns.
 - Lay out lines for reading, independent of the source and with no bars-per-line count: a section mark or a verse, pre-chorus, chorus or end label starts a line; no line starts on a chordless bar or breaks on a tied note where avoidable; no stranded single bar; each line fills until the next bar does not fit; between equal options, break at the chord change nearest a phrase boundary. Why: a count knows nothing about the music and forces bad breaks.
 - Scale each sheet to the largest notation up to a size of 2.0 whose lines fill at least 85% of every page they need, with at most 15% of lines holding 2 bars or fewer, lines spread evenly, and a short line first taking a bar from the line above it. Why: bigger reads better, blank space serves nothing, and the cap keeps songs alike.
