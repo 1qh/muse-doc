@@ -57,7 +57,7 @@ Owns what a final sheet carries.
 - In a kept bar whose chosen staff has no notes, take the notes of the other staff. Why: an instrumental passage can move between staves.
 - In a kept part with 2 staves, keep the staff cued Piano or Key, otherwise the top staff; list each choice per song. Why: the staff the pianist plays can sit on either line.
 - Never let chord text set a bar's width, on any sheet: bars with notes take width from their notes, and chords that do not fit put fewer bars on the line. Why: a bar's length shows time, not the length of a name.
-- Make empty bars in a piano line equal width. Why: even bars show the rhythm at a glance.
+- Make empty bars in a piano line equal width, leaving out a bar that carries a segno or coda sign. Why: even bars show the rhythm at a glance, and a sign's own room widens its bar by right.
 - Join a short run of empty bars to the line above, even a line with notes, when the notes stay legible. Why: a line of 2 empty bars wastes height.
 - Let a lyric label sit second on a piano line WHEN a section mark on the bar before opens that line. Why: starting both would strand the mark's bar alone.
 - Avoid a lone bar on a piano line: move a neighbouring bar onto its line, even from a line of kept notes, unless the bar alone truly fills the line. Why: a stretched lone bar reads as wide and empty.
