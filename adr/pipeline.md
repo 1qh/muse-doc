@@ -16,6 +16,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Find a Leland staff line as the longest run of touching strokes over 100pt at 1 height, never a single long stroke. Why: an export draws some staves 1 bar at a time, and a stack of short ledger lines touches nowhere.
 - Group a lower staff into the system above when every bar line it has falls on the upper staff's and either both end together or a bar line runs down from the upper staff into it. Why: a part entering later starts its staff late, and a part leaving early ends it soon.
 - Give each Leland text to 1 line: the line whose window holds it, and where 2 windows overlap, the line whose staff it sits above. Why: an ending, chord or cue between 2 lines was read by both, doubling endings and texts.
+- Give a Leland repeat dot to the bar it sits inside, opening that bar's repeat near its left edge and closing it near its right. Why: where a key change parts a double barline from a start repeat, the nearest edge is the bar before, and the start reads as an end.
 - Hold every Leland source's decoded line starts equal to the bar numbers it prints at the left of each line. Why: a dropped or split staff shifts every later bar while each bar still reads.
 - Keep a mid-song key change in the score and move it by the song's own interval. Why: the change belongs to the song.
 
