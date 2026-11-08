@@ -61,7 +61,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 ## Song file
 - Extract each source once into 1 JSON song file in private `muse-spike`, holding musical facts such as beats and no PDF positions, verified at extraction. Why: every later stage then needs only this file, so a decoder change rebuilds nothing.
 - Apply a correction by editing the song file. Why: a fix to the music has 1 home and its own history.
-- Key a build on the song file, the layout rules and the style, never on decoder or check code. Why: a change that cannot alter a sheet must not rebuild it.
+- Key a build on the song file, the style and the code that can shape a sheet, derived as the import closure of the modules that write it and the extension it installs, never a hand-kept list of exclusions. Why: a change that cannot alter a sheet must not rebuild it, and a hand list rots: it keyed sheets on the status reporter while excluding a module every sheet had come to use.
 
 ## Calculated layout
 - Measure each sheet once per candidate size, all sizes in 1 MuseScore job, with the page so wide and the last line so unjustified that every bar prints at its natural width, and run the extension on that render in its measure mode, which writes back through a score tag the share each bar must grow to hold its chords apart by the clear gap; a beat-1 chord's need is its distance from the barline, past any sign there, plus its own room, before the next chord's share of the bar, while a later chord sits at a share of its bar. Why: natural widths and chord needs predict line breaks, so lines are planned in code rather than found by trial renders, and a sign's fixed room read as a share asks a narrow bar to grow a hundredfold.
