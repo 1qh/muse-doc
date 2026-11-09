@@ -12,6 +12,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 | Export | MuseScore `mscore` with a fixed style file | locked | a header, footer or banned text in the PDF |
 
 ## Source encodings
+- Know every music glyph an orchestral source prints: the dynamics letters, the accidentals inside text and the tuplet digits of its text font; tenuto, marcato, accent below, up-bow, down-bow, harmonic circle, bass clef, alto clef and the time digit of its music font; the augmentation dot, system bracket ends, wavy arpeggio line, treble-8vb clef, diamond notehead and tremolo slashes of its 3rd font. Why: an undecoded glyph is refused, never skipped.
 - Decode MuseScore-exported lead sheets through a Leland decoder reading vector glyphs, stems and beams, one more entry in the 1-per-encoding table, with no new dependency. Why: the music glyphs are standard SMuFL characters, and a page image adds only error.
 - Find a staff line in every decoder that reads drawn staves as the longest run of touching strokes over 100pt at 1 height, never a single long stroke. Why: an export draws some staves 1 bar at a time, and a stack of short ledger lines touches nowhere.
 - Group a lower staff into the system above when every bar line it has falls on the upper staff's and either both end together or a bar line runs down from the upper staff into it. Why: a part entering later starts its staff late, and a part leaving early ends it soon.
@@ -25,9 +26,13 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 ## Orchestral score
 - Port an orchestral source as every staff printed, in its original key, with transposing instruments kept, to the 2 MuseScore files and 1 PDF only. Why: the file is the whole score, and the piano sheet and favourite tone do not apply.
 - Exempt an orchestral score from the size rule and the line-layout rules, keeping the source's system breaks. Why: a full score reads system by system.
+- Read an orchestral source from its own folder, `Orchestral` beside the lead-sheet folders, named `<name>-<concert key>.pdf` like every source. Why: the folder says which pipeline a source takes, and the name carries the key the gate checks.
+- Name each staff of an orchestral system from the label printed beside it in that system, never by its order, and give a label centred between 2 braced staves to both. Why: a full score hides empty staves, so a system's staff count changes page to page, and a harp's 1 label stands between its 2 staves.
+- Read an orchestral score as 1 event per stem with all its heads, each beamed figure on the staff its beam serves, voices apart only where 2 stems or heads coincide, flat beams as beams, double dots as 7/4, and a bracketed 3 or 5 scaling every stem and rest under it. Why: these are what a full score engraves, and each was measured on Thaïs, which then reads 1,215 of 1,219 staff-bars whole.
+- Keep a harp line that crosses between its 2 staves as 1 line across them. Why: the engraver writes it without rests, so 2 separate staves would each read half a bar.
 
 ## MuseScore 3 file
-- Build no `-ms3` file and remove any published one while the owner defers them; trigger to resume: the owner asks for MuseScore 3 files again, and every rule below applies unchanged then. Why: the file serves only sharing with older installs, and its build slows every song.
+- Build a `-ms3` file for every orchestral score, and none for a lead sheet while the owner defers them; trigger to resume lead sheets: the owner asks for their MuseScore 3 files again, and every rule below applies unchanged then. Why: the owner wants the full score shareable with older installs, and a lead sheet's `-ms3` build slows every song.
 - Build each `-ms3` file with MuseScore 3.6.2 from the pipeline's own MusicXML, never from a MuseScore 4 export. Why: the export drops chord extensions.
 - Hold notes, chords, chord beats and jumps identical to the latest file through the gate; layout may differ. Why: version 3 lays music out differently.
 - Withhold a file that cannot match, and report the song and reason. Why: a wrong file is worse than a missing one at a rehearsal.
