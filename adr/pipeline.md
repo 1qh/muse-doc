@@ -94,6 +94,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 
 ## Measured MuseScore behaviour
 - Rewrite every Expression an import produces as staff text with the same placement, before any layout. Why: MuseScore imports italic-only words as an Expression and sets all expressions under a staff on 1 row without avoiding each other, so a long cue overprints a later one.
+- MuseScore needs the login session's window server: launched from a shell outside it, such as a terminal multiplexer whose server outlived a restart, it aborts on every file with `PasteBoard: Error creating pasteboard ... [-4960]`, and even `open -a` refuses there with `kLSNoExecutableErr`, so a build runs only from a shell started inside the logged-in session.
 - `mscore -j` loads every score of a job file in 1 process; an entry takes a list of outputs and a `transpose` object, and nothing keeps the program running between jobs.
 - `mscore --extension <uri>` runs an installed extension on each loaded score before it is written; the extension reads every element's page position and box, moves offsets, and sees the layout redone after `endCmd`.
 - An extension receives the plugin API's score functions and no process API: `writeScore` exports only the score it was launched with, `readScore` with its noninteractive flag is not implemented and returns nothing, and `newQProcess` is undefined; 1 launch therefore serves 1 score, and MuseScore offers no way to keep 1 process serving many.
