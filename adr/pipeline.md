@@ -33,6 +33,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Read an orchestral source from its own folder, `Orchestral` beside the lead-sheet folders, named `<name>-<concert key>.pdf` like every source. Why: the folder says which pipeline a source takes, and the name carries the key the gate checks.
 - Name each staff of an orchestral system from the label printed beside it in that system, never by its order, and give a label centred between 2 braced staves to both. Why: a full score hides empty staves, so a system's staff count changes page to page, and a harp's 1 label stands between its 2 staves.
 - Read an orchestral score as 1 event per stem with all its heads, each beamed figure on the staff its beam serves, voices apart only where 2 stems or heads coincide, flat beams as beams, double dots as 7/4, and a bracketed 3 or 5 scaling every stem and rest under it. Why: these are what a full score engraves, and each was measured on Thaïs, which then reads 1,215 of 1,219 staff-bars whole.
+- Write a printed tempo of an orchestral score as its words and a metronome mark, its note drawn by the music font, never as a note character inside text. Why: the text font has no note, so the PDF falls back to a foreign font and the gate refuses it.
 - Keep a harp line that crosses between its 2 staves as 1 line across them. Why: the engraver writes it without rests, so 2 separate staves would each read half a bar.
 
 ## MuseScore 3 file
