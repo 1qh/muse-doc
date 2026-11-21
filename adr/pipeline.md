@@ -26,6 +26,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Keep a mid-song key change in the score and move it by the song's own interval. Why: the change belongs to the song.
 
 ## Orchestral score
+- Give a clef only to the staff it stands on, within that staff's own lines and ledger reach, never to the nearest staff of a system it does not belong to. Why: a clef of the next system read as a change on this system's bottom staff puts its notes 46 octaves off.
 - Port an orchestral source as every staff printed, in its original key, with transposing instruments kept, to the 2 MuseScore files and 1 PDF only. Why: the file is the whole score, and the piano sheet and favourite tone do not apply.
 - Exempt an orchestral score from the size rule and the line-layout rules, keeping the source's system breaks. Why: a full score reads system by system.
 - Read an orchestral source from its own folder, `Orchestral` beside the lead-sheet folders, named `<name>-<concert key>.pdf` like every source. Why: the folder says which pipeline a source takes, and the name carries the key the gate checks.
