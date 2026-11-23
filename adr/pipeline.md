@@ -5,7 +5,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 | Stage | Pick | State | Disproved by |
 |---|---|---|---|
 | Read notes | Direct reader of PDF symbols, 1 decoder per encoding | locked | a bar disagreeing with the source when read by eye |
-| Cross-check | homr 0.7 on every source page | locked | a real disagreement left unresolved |
+| Cross-check | homr on every source page | locked | a real disagreement left unresolved |
 | Read chords and text | Direct PDF text extraction | locked | a chord or cue missing from the output |
 | Write | MusicXML with explicit system breaks | locked | a wrong import in MuseScore |
 | Transpose | MuseScore `--transpose` | locked | a verifier mismatch on notes, chords or key |
@@ -44,13 +44,6 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Spread an orchestral score's systems over the whole page height. Why: the source's width sets the size, and a system left at the top of an empty page reads as a broken print.
 - Write a printed tempo of an orchestral score as its words and a metronome mark, its note drawn by the music font, never as a note character inside text. Why: the text font has no note, so the PDF falls back to a foreign font and the gate refuses it.
 - Keep a harp line that crosses between its 2 staves as 1 line across them. Why: the engraver writes it without rests, so 2 separate staves would each read half a bar.
-
-## MuseScore 3 file
-- Build a `-ms3` file for every song only for playback with MuseScore 3's piano keyboard, which lights each key as it plays; MuseScore 4 dropped that highlight. Why: the file exists for that 1 use, and nothing printed or laid out serves it.
-- Make the `-ms3` file a plain conversion of the source of truth: MuseScore 3.7 opens the same MusicXML MuseScore 4 imports, with its own default style, and saves it, with no sizing, line breaks, chord seating, sign sizing or any other layout or print rule. Why: layout serves reading, and this file is only played.
-- Hold notes, chords, chord beats and jumps identical to the MuseScore 4 file through the gate, and judge nothing else in it. Why: a missing note or chord, or a jump that plays wrong, is the only thing that breaks playback.
-- Withhold a file that cannot match, and report the song and reason. Why: a wrong file is worse than a missing one at a rehearsal.
-- Name every MuseScore 3 thing by its version, `ms3` in code and MuseScore 3 in prose, and its MuseScore 4 counterpart `ms4` and MuseScore 4, never by age. Why: both versions are current, maintained targets, and a name by age reads one as a leftover.
 
 ## Build cost
 - Key every song's build and gate result on a digest of its source, the code and the style, and skip what is unchanged. Why: adding 1 song or fixing 1 sheet type must not rebuild the rest.
@@ -136,6 +129,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Measure a print only beside positions drawn in the same load of its score: draw a PDF and its measure positions in 1 job, keep a published PDF's positions stamped with that PDF's digest, and let the gate refuse a PDF whose stamp does not match rather than render it again. Why: 2 renders of 1 file place bars up to a point apart, which accuses correct sheets.
 - Judge a sheet in the layout with the gate's own checks: 1 function per rule (line rules, paper size, ink at the edge, short-line share, page balance) that both call, the layout on its plan and its final render, the gate on the published file. Why: a rule only the gate knows lets the layout finish a sheet the gate then refuses, and 2 copies of 1 rule drift.
 - Read which rows and columns of a page hold ink through 1 reader, at 1 ink level, and refuse a blank page wherever a line's height is read from its ink. Why: 4 copies of 1 reading drift in threshold and stride, and a blank page has no first ink row.
+- Build for the newest release of every app, tool and dependency the machine runs, and write no version number in any doc or code: nothing names, pins or branches on a version. Why: every app, the code and its dependencies are kept at their newest release, so a written version is stale the day it lands.
 - Define each fact once: SMuFL code points and geometry shared by readers live in 1 module, and a test refuses a constant name defined in 2 modules unless it is listed as 2 distinct facts. Why: 2 copies of 1 fact drift apart silently.
 - Compare every word in a source's text layer with the decoded score in preflight, excluding only credit words, chord fragments and jump words. Why: a lost cue passes every check built on the decoder's own reading.
 - Check every planted-bug anchor in preflight, in seconds, before any control or build runs. Why: a stale control must not stop a chain late.
@@ -146,24 +140,21 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Report published state only from `muse.status`, which reads the private repo's HEAD and the build records, judging each record against the key its own writer derives and only the files it delivers into a song's folder. Why: a state recalled from a run is not a state checked.
 
 ## Dependencies
-- PyMuPDF: reads glyph positions and vector paths. Rejected: poppler text output, which has no path data. Maintenance: 2.0, inside the window.
-- MuseScore 4.7.6: import, transposition, export. Maintenance: current release line.
-- homr 0.7.0: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
-- Rejected: Audiveris 5.11, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, last release outside the window. Rejected: PDFtoMusic Pro, paid and unneeded.
+- PyMuPDF: reads glyph positions and vector paths. Rejected: poppler text output, which has no path data. Maintenance: active.
+- MuseScore 4, the newest release installed: import, transposition, export, and every file the pipeline publishes. Maintenance: active.
+- homr: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
+- Rejected: Audiveris, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, unmaintained. Rejected: PDFtoMusic Pro, paid and unneeded.
 
-- MuseScore 3.7 Evolution (`Jojo-Schmitz/MuseScore`, the maintained line of MuseScore 3): the `-ms3` file only, installed as `MuseScore 3.7.app` by `setup.sh`. Native on Apple silicon (`arm64`); saves format 3.02, which every MuseScore 3 opens. Rejected: MuseScore 3.6.2, Intel-only and unmaintained. Maintenance: floats at its newest `continuous` build like every dependency, refreshed by `setup.sh` and kept only while the gate passes; its MP3 library and updater are Intel-only and unused here.
-- psutil 7.2.2: measures idle CPU for the launch gate. Rejected: the load average, which counts waiting threads; parsing `top`, a hand-roll of what psutil owns. Exception to the 6-month window: its last release is 7.2.2 while its repository stays active with commits each week and it is the standard Python reader of system load; trigger to revisit: the repository is archived or a year passes with no release.
-- Python at its newest release every dependency ships for, and every dependency at its newest release, resolved fresh from the manifest's floors by `setup.sh`; no version is pinned. Python 3.14 while onnxruntime, which PyMuPDF 2 requires for its layout engine, ships no Python 3.15 wheel; trigger to move: onnxruntime ships one.
+- psutil: measures idle CPU for the launch gate. Rejected: the load average, which counts waiting threads; parsing `top`, a hand-roll of what psutil owns. Maintenance: its repository commits each week and it is the standard Python reader of system load, though releases are far apart; trigger to revisit: the repository is archived.
+- Python and every dependency at their newest releases, resolved fresh from the manifest by `setup.sh`, which takes the newest Python every dependency installs on; no version is written down or pinned anywhere. Why: the machine updates every app often, and a written version only goes stale.
 - pytest: tests in `muse`. Maintenance: active.
 - lintmax-py (`1qh/lintmax-py`): the one gate for every Python, shell and other file in `muse`, run as `lintmax-py fix` and `lintmax-py check`, with no rule configured in the project: every ruff rule, ty at error, dead code, unused dependencies, vulnerabilities, spelling, shell scripts. Rejected: a hand-picked ruff rule set with mypy, which misses most of what the gate catches.
-- git-filter-repo 2.47.0: strips superseded sheet versions from the sheets repo's history by blob. Rejected: BFG, which deletes by file name and so empties every earlier commit of current sheets too. Exception to the 6-month window: its last release is 2.47.0 while its repository stays active and Git's own documentation recommends it for history rewrites; trigger to revisit: the repository is archived or Git ships the capability itself.
+- git-filter-repo: strips superseded sheet versions from the sheets repo's history by blob. Rejected: BFG, which deletes by file name and so empties every earlier commit of current sheets too. Maintenance: its repository stays active and Git's own documentation recommends it for history rewrites, though releases are far apart; trigger to revisit: the repository is archived or Git ships the capability itself.
 
 ## Mechanism
 - MuseScore 4 import keeps jump words and signs as staff text, so the port rewrites them into jump elements and markers carrying `<sym>`, `markerType`, `markerCenterOnSymbol` and `musicSymbolSize`. An untyped marker prints at the end of its bar.
-- MuseScore 3 import writes the signs and jumps itself, so the port only sizes them.
-- Embed the chord list in each `-ms3` file's style, because that program otherwise prints a slash chord from its shipped list as a staircase.
-- The MuseScore 3 style adds `staffFontFace` and `systemFontFace`, MuseScore 3's own names for 2 text styles.
 - A chord kind is written as `other` with its text, because a standard kind drops extensions on import.
+- Print chords through the pipeline's own chord description, kept in the code repo, which renders the circle and triangle as SF Pro letters and a slash chord's bass level with its root. Why: MuseScore 4 builds its own description into the app, so the file a sheet prints by must live with the code that writes it.
 
 - Judge a beat-1 chord from where its bar's music opens: the barline, or the end of a key or time signature printed right after it, or past the box of a segno or coda whose middle lies just past that barline and in the bar's first half, as a target opening its bar does and a jump ending a narrow bar never does, mid-line as at a line's start, as the extension seats it; the signature run ends at the first note, however far above or below the staff its ledger lines put it, and is 1 tight run starting right at the barline, so a courtesy signature at a bar's far end opens nothing. Why: 2 definitions of 1 edge refuse a correctly seated chord.
 - Judge chords against the measure boxes the score program exports with `.mpos`, reading only chord ink from the PDF. Why: a barline guessed from drawn strokes confuses stems, beams and short staves.
