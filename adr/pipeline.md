@@ -140,7 +140,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Report published state only from `muse.status`, which reads the private repo's HEAD and the build records, judging each record against the key its own writer derives and only the files it delivers into a song's folder. Why: a state recalled from a run is not a state checked.
 
 ## Dependencies
-- PyMuPDF: reads glyph positions and vector paths. Rejected: poppler text output, which has no path data. Maintenance: active.
+- PyMuPDF: reads every glyph with its code, font and position, every vector path, and renders pages for the ink checks. Its required layout engine (`pymupdf-layout`, `pymupdf4llm`, onnxruntime and their support packages) serves nothing here and holds Python at the newest release onnxruntime ships for; no build of PyMuPDF without it exists. Rejected: pypdfium2, measured on all 25 sources: its text layer drops 444 printed glyphs, 92% of them within 6 points of an identical glyph, which in music are real stacked noteheads and repeated beam and flag glyphs, and it offers no other per-glyph position; pdfplumber, built on `pdfminer.six`, whose releases fall outside the maintenance window; poppler text output, which has no path data. Maintenance: active.
 - MuseScore 4, the newest release installed: import, transposition, export, and every file the pipeline publishes. Maintenance: active.
 - homr: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
 - Rejected: Audiveris, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, unmaintained. Rejected: PDFtoMusic Pro, paid and unneeded.
