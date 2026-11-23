@@ -30,6 +30,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Keep a mid-song key change in the score and move it by the song's own interval. Why: the change belongs to the song.
 
 ## Orchestral score
+- Define each fact once: SMuFL code points and geometry shared by readers live in 1 module, and a test refuses a constant name defined in 2 modules unless it is listed as 2 distinct facts. Why: 2 copies of 1 fact drift apart silently.
 - Give each word, dynamic, mark and hairpin of an orchestral page to exactly 1 system: within its reach of that system's staves and on its side of the halfway line to each neighbouring system. Why: 2 fixed reaches overlap wherever systems print close, and a glyph in both is read twice or by the wrong part.
 - Give a clef only to the staff it stands on, within that staff's own lines and ledger reach, never to the nearest staff of a system it does not belong to. Why: a clef of the next system read as a change on this system's bottom staff puts its notes 46 octaves off.
 - Port an orchestral source as every staff printed, in its original key, with transposing instruments kept, to the 2 MuseScore files and 1 PDF only. Why: the file is the whole score, and the piano sheet and favourite tone do not apply.
