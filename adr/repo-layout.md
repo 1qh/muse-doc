@@ -7,6 +7,7 @@ Owns which repo holds what.
 - Keep only PDF and MuseScore files in `muse-sheets`, its history included. Why: the repo is the deliverable and nothing else.
 - Keep `muse-sheets` public. Why: the owner chose to share the deliverable.
 - Name every song a publish brings in its commit message, `feat: publish <songs>`. Why: a reader scans the commit list for what arrived.
+- Publish a song's `-ms3` file first, in its own commit and push, then its other files. Why: the MuseScore 3 file is the owner's first priority, so it reaches the remote before anything else of that song.
 - Purge from the sheets repo's history only the PDF and MuseScore versions absent from the current sheets, by blob, and keep every current file in every commit that carries it. Why: history stays as light as the sheets themselves, and each commit's file list shows only the songs it changed.
 - Publish only through `muse.publish`, per song: a song passing its gate publishes, a failing song keeps its last good published folder and is listed with the reason, and only a repo-wide problem such as a stray file refuses the run. Why: 1 failing song must not hold back the rest.
 - Reset the local sheets repo to its remote before each song is copied in to publish. Why: a build stopped mid-publish can leave the local copy behind a history another publish rewrote, and every later push is then refused; the remote is the published record and nothing in that repo is ever local work.
