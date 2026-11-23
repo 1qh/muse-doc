@@ -1,6 +1,6 @@
 # Output content
 
-Owns what a final sheet carries.
+Owns what a final sheet carries: the MuseScore 4 file and every PDF; the `-ms3` file follows only the playback rules in the pipeline ADR.
 
 ## MUST
 #### What prints
@@ -11,14 +11,13 @@ Owns what a final sheet carries.
 - Make chords the biggest text with at least 0.75 chord font size of clear space between 2 chords. Why: chords are what gets read first.
 #### Chords and signs
 - Keep a chord baseline within 2.5 staff spaces of the staff top on a line with no notes. Why: the gate needs a stated distance, and the layout seats chords just above that.
-- In a MuseScore 3 file, accept the fixed hold that program keeps after a mid-line barline, up to 1.7 staff spaces, and seat the rest at the barline. Why: its layout holds that chord there whatever the offset, and freeing it from automatic placement runs it into lyrics and voltas.
 - Assign a chord to the bar holding the note or rest under it, never by a fixed distance from the barline; a chord with no event under it whose name crosses the barline belongs to the next bar. Why: a long name can start left of the barline it serves.
 - Place each chord on its true beat: a lone chord in a bar without notes on beat 1, several chords in a bar without notes on real beats by their order, a lone chord in a bar with notes on beat 1 unless the source prints it exactly over a note in the 2nd half, and several chords in a bar with notes on the notes the source aligns them to. Why: a chord that looks right and plays late sounds wrong.
 - Print every beat-1 chord with its left edge exactly at the barline, no gap, with or without notes, and right after the clef and key on a line start; left-align a mid-bar chord to its beat. Why: the same position everywhere reads at a glance, and centred chords shift with their width.
 - Seat chords close above the staff, about 1 staff space, on a shared baseline per line that clears the highest note. Why: a chord reads as belonging to the bar it sits on.
 - Judge a chord's height on a line with no notes from the highest mark under the chord row, a volta bracket, a volta number or other text, or a hairpin, else the staff top. Why: the line's 1 shared baseline rises over that mark by right.
 - Print every chord in its shortest form that plays the same as its long form: `maj7` as `Δ7`, `maj9` as `Δ9`, `add2` and `add9` as `2`, `sus4` as `sus`, `m7(b5)` as `ø` (`ø7` in `-ms3` files), `dim` as `°`, `dim7` as `°7`, `7(b9)` as `7♭9`, `m7(add4)` as `m7add4`; other forms stay. Why: short names read faster and leave more room on a line.
-- Require identical MuseScore playback between a chord's long and short forms on every MuseScore file built, with printing through a custom chord file; a form that cannot match keeps its long name. Why: a chord that prints right must also sound right.
+- Require identical MuseScore playback between a chord's long and short forms on every MuseScore 4 file, with printing through a custom chord file; a form that cannot match keeps its long name. Why: a chord that prints right must also sound right.
 - Write segno and coda as the score application's own built-in signs, enlarged through its own size setting. Why: a raw character behaves as plain text.
 - Print segno and coda signs at least 1.6 times the chord size, each in an outlined box bolder than the source's, red for segno and blue for coda, in the chord row, on every sheet. Why: a performer must spot a jump at a glance; the signs are the only exception to chords being biggest.
 - Keep every dynamic and tempo glyph clear of every printed word, judged by ink. Why: the word check reads letters only, so a word over a dynamic passes unseen.
@@ -26,7 +25,7 @@ Owns what a final sheet carries.
 - Print no jump words: a jump is the same boxed sign as its target, at the end of its bar with its whole box inside that bar, never across the barline, nearer its own line than the line above, beside any other sign in that bar, which widens to hold both, and never over a chord; a target opens its line at the line's left edge, before the clef. Why: the sign alone reads faster, and it stays on the bar it belongs to.
 - Keep every jump a real jump in every MuseScore file built. Why: playback must still follow it.
 #### Layout
-- Print no empty staff on a line that shares it with another staff, in any file, including MuseScore 3's first line; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
+- Print no empty staff on a line that shares it with another staff, in any MuseScore 4 file and PDF; a cue on a staff with no notes in that bar moves to the staff above. Why: an empty staff takes height and looks like missing music.
 - Count a staff carrying chord symbols as holding music, even over a bar of written rests. Why: the band reads the chords and the rest rhythm from that staff, as the source prints it.
 - Take as many pages as the song needs, on every sheet; a page count is never a limit. Why: readability and consistency outrank page turns.
 - Lay out lines for reading, independent of the source and with no bars-per-line count: a section mark or a verse, pre-chorus, chorus or end label starts a line; no line starts on a chordless bar or breaks on a tied note where avoidable; no stranded single bar on any sheet, which the final checks refuse; each line fills until the next bar does not fit; between equal options, break at the chord change nearest a phrase boundary. Why: a count knows nothing about the music and forces bad breaks.

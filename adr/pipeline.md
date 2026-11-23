@@ -46,12 +46,11 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Keep a harp line that crosses between its 2 staves as 1 line across them. Why: the engraver writes it without rests, so 2 separate staves would each read half a bar.
 
 ## MuseScore 3 file
-- Name every MuseScore 3 thing by its version, `ms3` in code and MuseScore 3 in prose, and its MuseScore 4 counterpart `ms4` and MuseScore 4, never by age. Why: both versions are current, maintained targets, and a name by age reads one as a leftover.
-- Build a `-ms3` file for every song, lead sheet and orchestral score alike. Why: the owner shares every score with MuseScore 3 users.
-- Build each `-ms3` file with MuseScore 3.7 from the pipeline's own MusicXML, never from a MuseScore 4 export. Why: the export drops chord extensions.
-- Give MuseScore 3.7 the pipeline's whole MusicXML, harmonics and every other mark included, and let it read them. Why: it reads every mark MuseScore 4 reads, so the `-ms3` file needs no second path.
-- Hold notes, chords, chord beats, jumps and marks (articulations, ornaments, dynamics, hairpins, arpeggios on every staff they cover) identical to the MuseScore 4 file through the gate; layout may differ. Why: MuseScore 3 lays music out its own way.
+- Build a `-ms3` file for every song only for playback with MuseScore 3's piano keyboard, which lights each key as it plays; MuseScore 4 dropped that highlight. Why: the file exists for that 1 use, and nothing printed or laid out serves it.
+- Make the `-ms3` file a plain conversion of the source of truth: MuseScore 3.7 opens the same MusicXML MuseScore 4 imports, with its own default style, and saves it, with no sizing, line breaks, chord seating, sign sizing or any other layout or print rule. Why: layout serves reading, and this file is only played.
+- Hold notes, chords, chord beats and jumps identical to the MuseScore 4 file through the gate, and judge nothing else in it. Why: a missing note or chord, or a jump that plays wrong, is the only thing that breaks playback.
 - Withhold a file that cannot match, and report the song and reason. Why: a wrong file is worse than a missing one at a rehearsal.
+- Name every MuseScore 3 thing by its version, `ms3` in code and MuseScore 3 in prose, and its MuseScore 4 counterpart `ms4` and MuseScore 4, never by age. Why: both versions are current, maintained targets, and a name by age reads one as a leftover.
 
 ## Build cost
 - Key every song's build and gate result on a digest of its source, the code and the style, and skip what is unchanged. Why: adding 1 song or fixing 1 sheet type must not rebuild the rest.
@@ -152,7 +151,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - homr 0.7.0: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
 - Rejected: Audiveris 5.11, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, last release outside the window. Rejected: PDFtoMusic Pro, paid and unneeded.
 
-- MuseScore 3.7 Evolution (`Jojo-Schmitz/MuseScore`, the maintained line of MuseScore 3): the `-ms3` file and its gate render, installed as `MuseScore 3.7.app` by `setup.sh`. Native on Apple silicon (`arm64`); saves format 3.02, which every MuseScore 3 opens. Rejected: MuseScore 3.6.2, Intel-only and unmaintained. Maintenance: floats at its newest `continuous` build like every dependency, refreshed by `setup.sh` and kept only while the gate passes; its MP3 library and updater are Intel-only and unused here.
+- MuseScore 3.7 Evolution (`Jojo-Schmitz/MuseScore`, the maintained line of MuseScore 3): the `-ms3` file only, installed as `MuseScore 3.7.app` by `setup.sh`. Native on Apple silicon (`arm64`); saves format 3.02, which every MuseScore 3 opens. Rejected: MuseScore 3.6.2, Intel-only and unmaintained. Maintenance: floats at its newest `continuous` build like every dependency, refreshed by `setup.sh` and kept only while the gate passes; its MP3 library and updater are Intel-only and unused here.
 - psutil 7.2.2: measures idle CPU for the launch gate. Rejected: the load average, which counts waiting threads; parsing `top`, a hand-roll of what psutil owns. Exception to the 6-month window: its last release is 7.2.2 while its repository stays active with commits each week and it is the standard Python reader of system load; trigger to revisit: the repository is archived or a year passes with no release.
 - pytest, ruff, mypy: tests, lint, types in `muse`. Maintenance: active.
 - git-filter-repo 2.47.0: strips superseded sheet versions from the sheets repo's history by blob. Rejected: BFG, which deletes by file name and so empties every earlier commit of current sheets too. Exception to the 6-month window: its last release is 2.47.0 while its repository stays active and Git's own documentation recommends it for history rewrites; trigger to revisit: the repository is archived or Git ships the capability itself.
