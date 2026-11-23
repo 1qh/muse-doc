@@ -48,7 +48,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Build a `-ms3` file for every orchestral score, and none for a lead sheet while the owner defers them; trigger to resume lead sheets: the owner asks for their MuseScore 3 files again, and every rule below applies unchanged then. Why: the owner wants the full score shareable with older installs, and a lead sheet's `-ms3` build slows every song.
 - Build each `-ms3` file with MuseScore 3.6.2 from the pipeline's own MusicXML, never from a MuseScore 4 export. Why: the export drops chord extensions.
 - Write a harmonic into the `-ms3` file directly, as a harmonic articulation on the chord at its staff, bar and beat, and give MuseScore 3 the pipeline's MusicXML without it. Why: MuseScore 3.6.2 stops reading a part at a MusicXML harmonic and keeps none in any spelling, while MuseScore 4 reads it.
-- Hold notes, chords, chord beats and jumps identical to the latest file through the gate; layout may differ. Why: version 3 lays music out differently.
+- Hold notes, chords, chord beats, jumps and marks (articulations, ornaments, dynamics, hairpins, arpeggios on every staff they cover) identical to the latest file through the gate; layout may differ. Why: version 3 lays music out differently.
 - Withhold a file that cannot match, and report the song and reason. Why: a wrong file is worse than a missing one at a rehearsal.
 
 ## Build cost
