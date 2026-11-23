@@ -13,7 +13,7 @@ Owns which repo holds what.
 - Purge replaced binaries from `muse-sheets` history with git-filter-repo after each publish, and force-push only when the HEAD tree id is unchanged by the purge. Why: re-exported PDFs and scores otherwise accumulate on the remote, and a purge that touches a current file must push nothing.
 
 #### Song folders
-- Give each song 1 folder named `<name>/` holding `<name>-<original>.mscz`, `<name>-<original>.pdf`, `<name>-<favourite>.pdf` and `<name>-<favourite>-piano.pdf`. Why: every use of a song sits in 1 place.
+- Give each song 1 folder named `<name>/` holding `<name>-<original>.mscz`, `<name>-<original>.pdf`, `<name>-<favourite>.pdf`, `<name>-<favourite>-piano.pdf` and `<name>-<original>-ms3.mscz`. Why: every use of a song sits in 1 place.
 - Give an orchestral score `<name>-<original>.mscz`, `<name>-<original>-ms3.mscz` and `<name>-<original>.pdf`. Why: it has no favourite tone or piano sheet, and the owner shares it with MuseScore 3 users.
 - Skip `<name>-<favourite>.pdf` when the original already is the favourite tone. Why: it would duplicate `<name>-<original>.pdf`.
 - Keep MuseScore files in the original tone only. Why: the favourite tone is delivered as print.
