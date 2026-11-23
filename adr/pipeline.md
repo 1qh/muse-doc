@@ -46,10 +46,11 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Keep a harp line that crosses between its 2 staves as 1 line across them. Why: the engraver writes it without rests, so 2 separate staves would each read half a bar.
 
 ## MuseScore 3 file
+- Name every MuseScore 3 thing by its version, `ms3` in code and MuseScore 3 in prose, and its MuseScore 4 counterpart `ms4` and MuseScore 4, never by age. Why: both versions are current, maintained targets, and a name by age reads one as a leftover.
 - Build a `-ms3` file for every song, lead sheet and orchestral score alike. Why: the owner shares every score with MuseScore 3 users.
 - Build each `-ms3` file with MuseScore 3.7 from the pipeline's own MusicXML, never from a MuseScore 4 export. Why: the export drops chord extensions.
 - Give MuseScore 3.7 the pipeline's whole MusicXML, harmonics and every other mark included, and let it read them. Why: it reads every mark MuseScore 4 reads, so the `-ms3` file needs no second path.
-- Hold notes, chords, chord beats, jumps and marks (articulations, ornaments, dynamics, hairpins, arpeggios on every staff they cover) identical to the latest file through the gate; layout may differ. Why: version 3 lays music out differently.
+- Hold notes, chords, chord beats, jumps and marks (articulations, ornaments, dynamics, hairpins, arpeggios on every staff they cover) identical to the MuseScore 4 file through the gate; layout may differ. Why: MuseScore 3 lays music out its own way.
 - Withhold a file that cannot match, and report the song and reason. Why: a wrong file is worse than a missing one at a rehearsal.
 
 ## Build cost
