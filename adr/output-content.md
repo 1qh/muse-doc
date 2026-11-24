@@ -38,6 +38,7 @@ Owns what a final sheet carries.
 - Flag a suspected mistake in that list, unchanged, when the song holds no evidence that settles it. Why: a guess presented as a correction is a new error.
 
 - Put readability ahead of tightness: readable notation size, clear gaps between lines, small margins, lines spread evenly across pages, no ink at the page edge. Why: the sheet is read while performing.
+- Spread every page's lines down the whole page through MuseScore's own vertical justification, every page of every sheet, the last included, with the line gap the layout chose as the least distance between 2 lines. Why: a balanced sheet otherwise stops a third short of each page's bottom, and wider gaps read easier than an empty band.
 
 ## Print mode
 - Build in strict mode; print mode applies only while the owner asks for every song printed for a rehearsal; trigger to return to it: the owner says so. Why: the strict rules are the standard, and print mode loosened only polish a musician reads past.
