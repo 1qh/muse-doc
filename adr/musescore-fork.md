@@ -5,7 +5,7 @@ Owns the owner's own MuseScore build: what it adds to upstream, where it is buil
 ## MUST
 #### What the fork is
 - Keep `1qh/MuseScore` as a fork of `musescore/MuseScore` whose release branch is upstream's newest release tag plus a small set of patches, each 1 file under `patches/`. Why: a patch set rebases onto each release, while a diverged branch drifts.
-- Carry exactly these patches: `serve` (a `--serve` mode that runs 1 conversion job per line of standard input and stays running), `piano-playback` (the keyboard panel lights the notes sounding during playback, upstream pull request 34351 ported to the release), `swift-interop` (the Quick Look extension compiles under the newest Swift). Why: each answers a need upstream leaves open; nothing else differs from upstream.
+- Carry exactly these patches: `serve` (a `--serve` mode that runs 1 conversion job per line of standard input and stays running), `piano-playback` (the keyboard panel lights the notes sounding during playback, upstream pull request 34351, fitted to the release), `swift-interop` (the Quick Look extension compiles under the newest Swift). Why: each answers a need upstream leaves open; nothing else differs from upstream.
 - Drop a patch the moment upstream ships its change. Why: a patch upstream already carries is a conflict waiting for the next release.
 - Build at upstream's newest release tag, against the Qt version upstream's own macOS build names in `buildscripts/ci/macos/install_qt.sh`. Why: upstream's QML compiler output for 1 Qt version does not compile against another, so the Qt version is a hold upstream decides; trigger to revisit: every upstream release.
 
