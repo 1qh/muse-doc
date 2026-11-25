@@ -12,6 +12,7 @@ Owns the owner's own MuseScore build: what it adds to upstream, where it is buil
 
 #### Where it is built and released
 - Compile on the owner's idle second Mac, with `release.sh` in build-only mode, and bring the built app back to the development Mac, for Apple Silicon only. Why: the compile is the heavy step, and the idle Mac takes it off the machine running the pipeline; no hosted builder costs anything.
+- Name every module option the lean build changes or keeps, ON or OFF, on every build. Why: CMake keeps a cached value, so dropping an option leaves its last setting in force.
 - Launch the built app on a score before packaging, and refuse it when its log reports the main window failed to load. Why: a module switched off while another module's QML imports it leaves the app running with no window, and the build, the command line and the pipeline all pass.
 - Rebuild only when a patch differs from the copy the build tree carries, and otherwise compile on the existing tree. Why: a fresh clone and full compile costs most of an hour, and a changed patch is the only thing that makes the tree stale.
 - Point the built app's library search at the packaging Mac's own Qt and dependencies before packaging. Why: the compile Mac's paths are baked in, and the packager bundles Qt by resolving them.
