@@ -11,7 +11,8 @@ Owns the owner's own MuseScore build: what it adds to upstream, where it is buil
 - Build at upstream's newest release tag, against the Qt version upstream's own macOS build names in `buildscripts/ci/macos/install_qt.sh`. Why: upstream's QML compiler output for 1 Qt version does not compile against another, so the Qt version is a hold upstream decides; trigger to revisit: every upstream release.
 
 #### Where it is built and released
-- Build, sign, notarize and release on the owner's development Mac only, for Apple Silicon only. Why: the owner develops on 1 Mac and pays nothing for a hosted builder.
+- Compile on the owner's idle second Mac, with `release.sh` in build-only mode, and bring the built app back to the development Mac, for Apple Silicon only. Why: the compile is the heavy step, and the idle Mac takes it off the machine running the pipeline; no hosted builder costs anything.
+- Sign, notarize, package and release on the development Mac only. Why: the signing identity and API key stay on 1 Mac, so build-only mode asks for neither.
 - Sign with the owner's Developer ID Application certificate and notarize with the App Store Connect API key, both read from the owner's secrets tree, and staple the ticket to the disk image. Why: a notarized, stapled app opens on any of the owner's Macs with no warning, offline included.
 - Publish each build as a GitHub Release of the fork, named after the upstream tag it carries. Why: the other Macs install from 1 download page.
 
