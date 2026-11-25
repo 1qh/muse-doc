@@ -151,7 +151,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 
 ## Dependencies
 - PyMuPDF: reads every glyph with its code, font and position, every vector path, and renders pages for the ink checks. Its required layout engine (`pymupdf-layout`, `pymupdf4llm`, onnxruntime and their support packages) serves nothing here and holds Python at the newest release onnxruntime ships for; no build of PyMuPDF without it exists. Rejected: pypdfium2, measured on all 25 sources: its text layer drops 444 printed glyphs, 92% of them within 6 points of an identical glyph, which in music are real stacked noteheads and repeated beam and flag glyphs, and it offers no other per-glyph position; pdfplumber, built on `pdfminer.six`, whose releases fall outside the maintenance window; poppler text output, which has no path data. Maintenance: active.
-- MuseScore 4 as the owner's fork `1qh/MuseScore` (`musescore-fork.md`): upstream's newest release plus the `--serve` mode the pipeline runs on; import, transposition, export, and every file the pipeline publishes. Maintenance: active.
+- MuseScoreLite, the owner's build of MuseScore 4 from the sibling repos `mslite` (code) and `mslite-doc` (docs): upstream's newest release plus the `--serve` mode the pipeline runs on, keeping the extension runner and the PDF, measure position, MIDI, MusicXML and MuseScore file exports the pipeline asks for; import, transposition, export, and every file the pipeline publishes. Maintenance: active.
 - homr: independent cross-check only. Rejected as reader: returns no chords or text. Maintenance: active.
 - Rejected: Audiveris, 53 of 62 bars exact on the comparison page and no chords. Rejected: oemer, unmaintained. Rejected: PDFtoMusic Pro, paid and unneeded.
 
