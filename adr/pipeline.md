@@ -117,6 +117,8 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Fail a measurement that cannot read what it measures, never return a neutral value in its place. Why: a zero chord need packed 12 bars on 1 line and read as a seating fault.
 - Install the extension from the code repo into MuseScoreLite's extensions folder in `~/mslite/extensions` under a name and address carrying a digest of its own bytes, and run it by that address. Why: a build must not depend on a hand-installed copy, and 2 runs of different versions, such as planted-bug controls, must never share 1 installed copy.
 
+- Never carry a bar's learned width growth from 1 candidate size to another. Cost: measured on all 25 songs it halved the build time but printed 13 sheets longer and 3 shorter, because a bar that grows at 1 size is widened at sizes where it fit.
+
 ## Measured MuseScore behaviour
 - Rewrite every Expression an import produces as staff text with the same placement, before any layout. Why: MuseScore imports italic-only words as an Expression and sets all expressions under a staff on 1 row without avoiding each other, so a long cue overprints a later one.
 - MuseScore needs the login session's window server: launched from a shell outside it, such as a terminal multiplexer whose server outlived a restart, it aborts on every file with `PasteBoard: Error creating pasteboard ... [-4960]`, and even `open -a` refuses there with `kLSNoExecutableErr`, so a build runs only from a shell started inside the logged-in session.
