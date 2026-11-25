@@ -50,6 +50,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Key every cache on what it was built from, never on a name or a path. Why: a name-keyed import from older code was reused and refused every layout.
 - Store the embedded chord list by name in every published score's style, never by a build path. Why: a build path is machine-local and resolves nowhere else.
 - Publish each song the moment it passes its gate, not at the end of a run. Why: a finished song owes the reader nothing further.
+- Purge superseded sheet versions from the sheets repo's history once a build has published its last song, never after each song. Why: a purge rewrites the whole history, so 1 per song serialised every publish behind a mirror clone, a filter and an aggressive repack.
 - Build each song in its own staging folder, copied into the sheets repo only under the publish lock. Why: publishing resets that repo, wiping any other song still building there.
 - Run every render and every extension run as 1 request to a pool of the fork's `mscore --serve` processes, 1 per launch slot, each started once and kept running, and restart a process that dies or passes its deadline. Why: a launch costs about 1 second of startup while a served render costs about 0.2, and a served render and seating were proven to lay out exactly as a fresh launch's.
 - Gather the renders many threads ask for into 1 request. Why: renders that share a request share its turn in the pool.
