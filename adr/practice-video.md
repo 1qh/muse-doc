@@ -9,7 +9,7 @@ Owns the owner's practice video of a song: a 4K picture of the 61-key keyboard a
 - Read each MIDI channel's role from the score's own channel declarations, in declaration order: a channel named `harmony` is the chord track, every other channel its part's staff. Why: the channels carry neither names nor distinct programs, and removing the chord symbols empties exactly the `harmony` channel on every song.
 
 #### Sound
-- Edit the MIDI only in ticks with `mido`: on each channel a bank select before its program change, the chord track on DynamicFullPad (`PianoLayer.sf2`, bank 22, program 8), every staff on OrchestraRound (`PianoLayer.sf2`, bank 22, program 28), a woodblock (WoodblockRound, `Percussion.sf2`, bank 21, program 52) on every beat of the time signature with the downbeat accented, and everything shifted by 1 bar of count-in. Why: MuseScore writes its tempo map on a later track, and a bank select after the program falls back to bank 0.
+- Edit the MIDI only in ticks with `mido`: on each channel a bank select before its program change, the chord track on DynamicFullPad (`PianoLayer.sf2`, bank 22, program 8), every staff on OrchestraRound (`PianoLayer.sf2`, bank 22, program 28), a woodblock (WoodblockRound, `Percussion.sf2`, bank 21, program 52) on every beat of each bar's own time signature, read from every track, with the downbeat accented and the count-in bar in the first time signature, and everything shifted by 1 bar of count-in. Why: MuseScore writes its tempo map on a later track, and a bank select after the program falls back to bank 0.
 - Render the sound with FluidSynth at 48 kHz from the owner's soundfonts, and refuse a channel that resolves no preset. Why: FluidSynth is the engine those soundfonts play through in the app.
 
 #### Picture
@@ -20,6 +20,8 @@ Owns the owner's practice video of a song: a 4K picture of the 61-key keyboard a
 
 #### Output
 - Encode the frames with `ffmpeg`'s VideoToolbox HEVC encoder (tag `hvc1`) and the sound as AAC into `<videos>/<song>-<key>.mp4`, outside every repository. Why: the hardware encoder renders a 4-minute song in about 2 minutes, and the videos are the owner's practice material, not a published deliverable.
+
+- Render every page or clip of the sheet through `pdfcheck`'s page reader, never a pixmap of the video's own. Why: every reading of a page has 1 home, so a threshold or a resolution is decided once.
 
 ## NEVER
 - Never render the video's sheet by hand outside the pipeline's render path. Cost: a score rendered without its style, chord file or transpose options prints a different layout or key.
