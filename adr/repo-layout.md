@@ -21,7 +21,7 @@ Owns which repo holds what.
 #### Homes
 - Keep correction lists, verdicts, pins and banned names in the private `muse-spike`. Why: they quote sheet content and name people.
 - Keep code in `muse`, docs in `muse-doc`, experiments in `muse-spike`, outputs in `muse-sheets`. Why: 1 home per kind.
-- Keep source PDFs in the workspace parent, outside every repo. Why: the sheets are borrowed and not ours to publish.
+- Keep source PDFs in `private/source` of the private `muse-spike`, 1 folder per source. Why: the sheets are borrowed and not ours to publish, and both Macs build from the same tracked copy.
 - Keep song titles and reading pins in the private `muse-spike`, never in a public repo. Why: the public repos carry no sheet content.
 
 ## NEVER
