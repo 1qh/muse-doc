@@ -7,3 +7,4 @@ Every doc for the `muse` pipeline.
 - [Tone map](adr/tone-map.md)
 - [Output content](adr/output-content.md)
 - [Pipeline](adr/pipeline.md)
+- [Practice video](adr/practice-video.md)
