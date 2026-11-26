@@ -157,6 +157,7 @@ Owns how a source PDF becomes a final sheet. The reader row is provisional until
 - Refuse ink past any edge of the page in the layout's own checks, not only past the right margin. Why: text raised above the first line left the page at the top and passed every vector check.
 - Tie a saved layout to a digest of the layout code and style, never a hand-raised number. Why: a forgotten bump republishes a stale sheet.
 - Write a trial build's records to its own folder named in `MUSE_BUILD_STATE`, never the published sheets' records. Why: a trial into a scratch sheets repo otherwise rewrites the records `muse.status` judges the published sheets by.
+- Brief every Codex lane that writes `muse` tests with the gate's 2 recurring refusals and their only accepted shapes: a test fake is a small typed class or plain function, never a `unittest.mock` object with attributes assigned after construction (vulture refuses them) or built from constructor keywords (the type checker refuses them); a docstring carries exactly the sections ruff's help names. Why: lanes write both shapes every time they are not told, and each costs a gate round.
 - Report published state only from `muse.status`, which reads the private repo's HEAD and the build records, judging each record against the key its own writer derives and only the files it delivers into a song's folder. Why: a state recalled from a run is not a state checked.
 
 ## Dependencies
